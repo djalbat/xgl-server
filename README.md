@@ -2,7 +2,7 @@
 
 Server side components and utilities for [Jiggle](https://github.com/djalbat/Jiggle).
 
-Since [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) supports texture mapping, so does Jiggle. However, WebGL allows only six textures per shader. One way around this is to use multiple shaders but this can become cumbersome. Another way around is compositing, essentially tiling several textures to produce a texture map. Jiggles provides this functionality for [Node.js](https://nodejs.org) applications. The reason is that the compositing uses [Sharp](http://sharp.pixelplumbing.com/), which only runs on Node.js and not in the browser.
+Since [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) supports texture mapping, so does Jiggle. A drawback of WebGL is that it allows only six textures per shader. One way around this is to use multiple shaders but this can become cumbersome. Another way around is compositing, essentially tiling several textures to produce a texture map. Jiggles provides this functionality for [Node.js](https://nodejs.org) applications. The reason is that the compositing uses [Sharp](http://sharp.pixelplumbing.com/), which only runs on Node.js and not in the browser.
 
 # Installation
 
@@ -62,7 +62,7 @@ router.get(indexPageURI, function(request, response, next) {
   response.end(html);
 });
 ```
-The first `textureDirectoryPath` argument of both the `png()` and `json()` methods is the path of the directory containing the textures. The second `overlayTextureSize` argument of the `png()` method specifies the size of the textures as they appear in the texture map. Choose a power of two, for example 64 or 128. The third `response` argument should be the response object. The `png()` method will both set the correct header and pipe the image to this object.
+The first `textureDirectoryPath` argument of both the `png()` and `json()` methods is the path of the directory containing the textures. The second `overlayTextureSize` argument of the `png()` method specifies the size of the textures as they appear in the texture map. Choose a power of two, for example 64 or 128. The third `response` argument should be the response object. The `png()` method will set the header and then pipe the image to this object.
 
 The template HTML file should look something like the following:
 ```html

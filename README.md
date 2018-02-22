@@ -62,7 +62,24 @@ router.get(indexPageURI, function(request, response, next) {
   response.end(html);
 });
 ```
-The first `textureDirectoryPath` argument of both the `png()` and `json()` methods is the path of the directory containing the textures. The second `overlayTextureSize` argument of the `png()` method specifies the size of the textures as they appear in the texture map. Choose a power of two, for example 64 or 128. The third `response` argument should be the response object returned by the Express `get()` method. The `png()` method will both set the correct header and pipe the image to this object.
+The first `textureDirectoryPath` argument of both the `png()` and `json()` methods is the path of the directory containing the textures. The second `overlayTextureSize` argument of the `png()` method specifies the size of the textures as they appear in the texture map. Choose a power of two, for example 64 or 128. The third `response` argument should be the response object. The `png()` method will both set the correct header and pipe the image to this object.
+
+The template HTML file should look something like the following:
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <script>
+
+      var imageMapJSON = ${imageMapJSON};
+
+    </script>
+  </body>
+</html>
+```
+Embedding the texture map JSON description in the HTML this way will make it available as a property of the global object in any script run in the browser. If you think this approach is questionable, return the JSON in response to an Ajax request. In the remainder of this usage example it is assumed that JSON has been embedded.
 
 ## Compiling from source
 

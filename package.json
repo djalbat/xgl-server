@@ -1,4 +1,14 @@
 {
+  "name": "jiggles",
+  "author": "James Smith",
+  "version": "0.0.2",
+  "license": "MIT",
+  "homepage": "https://github.com/djalbat/Jiggles",
+  "description": "Server side components and utilities for Jiggle.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/djalbat/Jiggles"
+  },
   "dependencies": {
     "sharp": "^0.18.4",
     "necessary": "^2.5.0"

@@ -3,7 +3,7 @@
 const sharp = require('sharp'),
       necessary = require('necessary');
 
-const { fileSystemUtilities, asynchronousUtilities, miscellaneousUtilities } = necessary,
+const { miscellaneousUtilities, asynchronousUtilities, fileSystemUtilities } = necessary,
       { rc } = miscellaneousUtilities,
       { whilst } = asynchronousUtilities,
       { readDirectory } = fileSystemUtilities;

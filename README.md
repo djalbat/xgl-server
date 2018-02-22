@@ -16,7 +16,7 @@ You can clone the repository with [Git](https://git-scm.com/)...
     
 # Usage
 
-In the example that follows, [Express](https://expressjs.com/) has been used, but it might be possible to do without it if the `response` object provides supports a `setHeader()` method and can be passed to a `pipe()` method.
+In the example that follows, [Express](https://expressjs.com/) has been used. It might be possible to do without it if the `response` object provided to the `png()` method supports a `setHeader()` method and can be passed to a `pipe()` method.
 ```js
 const jiggles = require('jiggles'),
       express = require('express'),

@@ -1,6 +1,6 @@
 'use strict';
 
 module.exports = {
-  imageMap: require('./lib/imageMap'),
-  imageMapUtilities: require('./lib/utilities/imageMap')
+  textureMap: require('./lib/textureMap'),
+  textureMapUtilities: require('./lib/utilities/textureMap')
 };

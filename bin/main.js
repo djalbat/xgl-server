@@ -10,8 +10,8 @@ const { templateUtilities, miscellaneousUtilities } = necessary,
       { onETX, rc } = miscellaneousUtilities,
       { parseFile } = templateUtilities,
       { argv, exit } = process,
-      { imageMap } = jiggles,
-      { IMAGE_MAP_URI, OVERLAY_IMAGE_SIZE, INDEX_PAGE_URI, INDEX_PAGE_FILE_PATH } = constants;
+      { textureMap } = jiggles,
+      { TEXTURE_MAP_URI, OVERLAY_TEXTURE_SIZE, INDEX_PAGE_URI, INDEX_PAGE_FILE_PATH } = constants;
 
 onETX(exit);
 
@@ -22,23 +22,22 @@ createServer();
 function createServer() {
   const server = express(), ///
         router = express.Router(),
-        { port, imageDirectoryPath, templateDirectoryPath } = rc;
+        { port, textureDirectoryPath, templateDirectoryPath } = rc,
+        textureMapURI = TEXTURE_MAP_URI,
+        overlayTextureSize = OVERLAY_TEXTURE_SIZE;
 
-    router.get(IMAGE_MAP_URI, function(request, response, next) {
-      const { imageDirectoryPath } = rc,
-            overlayImageSize = OVERLAY_IMAGE_SIZE;
-  
-      imageMap.png(imageDirectoryPath, overlayImageSize, response);
+    router.get(textureMapURI, function(request, response, next) {
+      textureMap.png(textureDirectoryPath, overlayTextureSize, response);
     });
         
     router.get(INDEX_PAGE_URI, function(request, response, next) {
-      let imageMapJSON = imageMap.json(imageDirectoryPath);
+      let textureMapJSON = textureMap.json(textureDirectoryPath);
     
-      imageMapJSON = JSON.stringify(imageMapJSON, null, '\t'); ///
+      textureMapJSON = JSON.stringify(textureMapJSON, null, '\t'); ///
     
       const filePath = `${templateDirectoryPath}${INDEX_PAGE_FILE_PATH}`,
             args = {
-              imageMapJSON: imageMapJSON
+              textureMapJSON: textureMapJSON
             },
             html = parseFile(filePath, args);
     

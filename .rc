@@ -3,7 +3,7 @@
     {
       "name": "development",
       "port": 8000,
-      "imageDirectoryPath": "image",
+      "textureDirectoryPath": "texture",
       "templateDirectoryPath": "template"
     }
   ]

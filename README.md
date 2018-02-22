@@ -2,7 +2,7 @@
 
 Server side components and utilities for [Jiggle](https://github.com/djalbat/Jiggle).
 
-Since [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) supports texture mapping, so does Jiggle. However, WebGL allows only six images per shader, a serious drawback. One way around this is to use multiple shaders but this can become cumbersome. Another way around is to use image compositing, essentially tiling several images to produce an image map. Jiggles provides this functionality in a way that can be utilised in a [Node.js](https://nodejs.org) application. The reason for Node.js is that the image compositing uses [Sharp](http://sharp.pixelplumbing.com/), which only runs on Node.js and not in the browser.
+Since [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) supports texture mapping, so does Jiggle. However, WebGL allows only six textures per shader. One way around this is to use multiple shaders but this can become cumbersome. Another way around is compositing, essentially tiling several textures to produce a texture map. Jiggles provides this functionality for [Node.js](https://nodejs.org) applications. The reason is that the compositing uses [Sharp](http://sharp.pixelplumbing.com/), which only runs on Node.js and not in the browser.
 
 # Installation
 
@@ -15,6 +15,22 @@ You can clone the repository with [Git](https://git-scm.com/)...
     npm install
     
 # Usage
+
+In the example that follows, [Express](https://expressjs.com/) has been used, but it is possible to do without it.
+```js
+const jiggles = require('jiggles'),
+      express = require('express'),
+      router = express.Router(),
+      { textureMap } = jiggles,
+      textureMapURI = ...,
+      overlaytextureSize = ...,
+      textureDirectoryPath = ...;
+
+    router.get(textureMapURI, function(request, response, next) {
+      textureMap.png(textureDirectoryPath, overlayTextureSize, response);
+    });
+```
+The first `textureDirectoryPath` argument is the path of the directory containing the textures. The second `overlayTextureSize` argument specifies the size of the textures as they appear in the texture map. Choose a power of two, for example 64 or 128. The third `response` argument should be the response object returned by the Express `get()` method. The `png()` method will both set the correct header and pipe the image to this object.
 
 ## Compiling from source
 

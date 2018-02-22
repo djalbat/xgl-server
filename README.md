@@ -28,7 +28,7 @@ There is presently no client side component to the example, partly to keep the d
     
 # Usage
 
-In the example that follows, [Express](https://expressjs.com/) and [Necessary](https://github.com/djalbat/Necessary) have been used to set up a simple server.
+In what follows, [Express](https://expressjs.com/) and [Necessary](https://github.com/djalbat/Necessary) have been used to set up a simple server. It might be possible to do without Express if the `response` object provided to the `png()` method explained below supports a `setHeader()` method and can be passed to a `pipe()` method. It is certainly possible to do without Necessary.
 ```js
 const jiggles = require('jiggles'),
       express = require('express'),
@@ -44,8 +44,6 @@ const router = express.Router();
 
 server.use(router);
 ```
-It might be possible to do without Express if the `response` object provided to the `png()` method explained below supports a `setHeader()` method and can be passed to a `pipe()` method. It is certainly possible to do without Necessary.
-
 Two routes need to be set up. One for the texture map itself in PNG format, provided by the `png()` method; and one for an HTML page with a corresponding JSON description provided by the `json()` method embedded in it.
 ```js
 const textureMapURI = ...,

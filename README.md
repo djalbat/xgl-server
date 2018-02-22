@@ -28,7 +28,7 @@ There is presently no client side component to the example, partly to keep the d
     
 # Usage
 
-In what follows, [Express](https://expressjs.com/) and [Necessary](https://github.com/djalbat/Necessary) have been used to set up a simple server. It may well be possible to manage without Express if the `response` object provided to the `png()` method explained below supports a `setHeader()` method and can be passed to a `pipe()` method. It is certainly possible to do without Necessary.
+In what follows, [Express](https://expressjs.com/) and [Necessary](https://github.com/djalbat/Necessary) have been used to set up a simple server. It might be possible to manage without Express if the `response` object provided to the `png()` method explained below supports a `setHeader()` method and can be passed to a `pipe()` method. It is certainly possible to do without Necessary.
 ```js
 const jiggles = require('jiggles'),
       express = require('express'),

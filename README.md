@@ -22,9 +22,9 @@ There is a small Node.js application which can be run from the root of the respo
 
     node ./bin/main.js
 
-This will provide two endpoints. The `http://localhost/textureMap` endpoint will serve the example texture map and the `http://localhost/` endpoint will provide a blank HTML file with the texture map JSON description embedded in it.
+This will provide two endpoints. The `http://localhost/textureMap` endpoint will serve the example texture map whilst the `http://localhost/` endpoint will provide a blank HTML file with the texture map JSON description embedded in it.
 
-There is presently no client side component to the example, partly to keep the dependencies down to a minimum. However, the necessary client side code to make use of the texture map is given in the usage section following immediately.
+There is presently no client side component to the example, partly to keep the dependencies down to a minimum. However, the necessary client side code to make use of the texture map is given in the usage section that follows.
     
 # Usage
 

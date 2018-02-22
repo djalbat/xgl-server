@@ -24,18 +24,20 @@ function createServer() {
         router = express.Router(),
         { port, textureDirectoryPath, templateDirectoryPath } = rc,
         textureMapURI = TEXTURE_MAP_URI,
+        indexPageURI = INDEX_PAGE_URI,
+        indexPageFilePath = INDEX_PAGE_FILE_PATH,
         overlayTextureSize = OVERLAY_TEXTURE_SIZE;
 
     router.get(textureMapURI, function(request, response, next) {
       textureMap.png(textureDirectoryPath, overlayTextureSize, response);
     });
         
-    router.get(INDEX_PAGE_URI, function(request, response, next) {
+    router.get(indexPageURI, function(request, response, next) {
       let textureMapJSON = textureMap.json(textureDirectoryPath);
     
       textureMapJSON = JSON.stringify(textureMapJSON, null, '\t'); ///
     
-      const filePath = `${templateDirectoryPath}${INDEX_PAGE_FILE_PATH}`,
+      const filePath = `${templateDirectoryPath}${indexPageFilePath}`,
             args = {
               textureMapJSON: textureMapJSON
             },

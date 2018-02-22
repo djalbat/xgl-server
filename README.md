@@ -13,6 +13,18 @@ You can clone the repository with [Git](https://git-scm.com/)...
 ...and then install the necessary modules with [npm](https://www.npmjs.com/) from within the project's root directory:
 
     npm install
+
+You will need to do this if you want to look at the example.
+
+# Example
+
+There is a small Node.js application which can be run from the root of the respository:
+
+    node ./bin/main.js
+
+This will provide two endpoints. The `http://localhost/textureMap` endpoint will serve the example texture map and the `http://localhost/` endpoint will provide a blank HTML file with the texture map JSON description embedded in it.
+
+There is presently no client side component to the example, partly to keep the dependencies down to a minimum. However, the necessary client side code to make use of the texture map is given in the usage section following immediately.
     
 # Usage
 

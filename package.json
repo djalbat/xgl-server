@@ -1,7 +1,7 @@
 {
   "name": "jiggles",
   "author": "James Smith",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "license": "MIT",
   "homepage": "https://github.com/djalbat/Jiggles",
   "description": "Server side components and utilities for Jiggle.",

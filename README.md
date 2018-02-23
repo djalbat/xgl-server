@@ -1,8 +1,8 @@
 # Jiggles
 
-Server side components and utilities for [Jiggle](https://github.com/djalbat/Jiggle).
+Image compositing for [Jiggle](https://github.com/djalbat/Jiggle).
 
-Since [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) supports texture mapping, so does Jiggle. A drawback of WebGL is that it allows only six textures per shader. One way around this is to use multiple shaders but this can become cumbersome. Another way around is compositing, essentially tiling several textures to produce a texture map. Jiggles provides this functionality for [Node.js](https://nodejs.org) applications. The reason is that the compositing uses [Sharp](http://sharp.pixelplumbing.com/), which only runs on Node.js and not in the browser.
+Since [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) supports image mapping, so does Jiggle. A drawback of WebGL is that it allows only six textures per shader. One way around this is to use multiple shaders but this can become cumbersome. Another way around is image compositing, essentially tiling several images to produce an image map. Jiggles provides image compositing for [Node.js](https://nodejs.org) applications. The reason is that it depends on [Sharp](http://sharp.pixelplumbing.com/), which only runs on Node.js and not in the browser.
 
 # Installation
 
@@ -22,48 +22,32 @@ There is a small Node.js application which can be run from the root of the respo
 
     node ./bin/main.js
 
-This will provide two endpoints. The `http://localhost/textureMap` endpoint will serve the example texture map whilst the `http://localhost/` endpoint will provide a blank HTML file with the texture map JSON description embedded in it.
-
-There is presently no client side component to the example, partly to keep the dependencies down to a minimum. However, the necessary client side code to make use of the texture map is given in the usage section that follows.
+This provides two endpoints. The `http://localhost/imageMap` endpoint will serve the example image map whilst the `http://localhost/` endpoint has a blank HTML file with the image map's JSON description embedded within it.
     
 # Usage
 
-In what follows, [Express](https://expressjs.com/) and [Necessary](https://github.com/djalbat/Necessary) have been used to set up a simple server. It might be possible to manage without Express if the `response` object provided to the `png()` method explained below supports a `setHeader()` method and can be passed to a `pipe()` method. It is certainly possible to do without Necessary.
+Both [Express](https://expressjs.com/) and [Necessary](https://github.com/djalbat/Necessary) have been used in the example application. It might be possible to manage without Express if the `response` object provided to the `png()` method explained below supports a `setHeader()` method and can be passed to a `pipe()` method. It is certainly possible to do without Necessary.
+
+Two routes have been set up to provide the aforementioned endpoints.
 ```js
-const jiggles = require('jiggles'),
-      express = require('express'),
-      necessary = require('necessary');
-
-const { templateUtilities } = necessary,
-      { parseFile } = templateUtilities,
-      { textureMap } = jiggles;
-
-const router = express.Router();
-
-...
-
-server.use(router);
-```
-Two routes need to be set up. One for the texture map itself in PNG format, provided by the `png()` method; and one for an HTML page with a corresponding JSON description provided by the `json()` method embedded within it.
-```js
-const textureMapURI = ...,
+const imageMapURI = ...,
       indexPageURL = ...
       indexPageFilePath = ...,
-      overlaytextureSize = ...,
-      textureDirectoryPath = ...;
+      overlayImageSize = ...,
+      imageDirectoryPath = ...;
 
-router.get(textureMapURI, function(request, response, next) {
-  textureMap.png(textureDirectoryPath, overlayTextureSize, response);
+router.get(imageMapURI, function(request, response, next) {
+  imageMap.png(imageDirectoryPath, overlayTextureSize, response);
 });
 
 router.get(indexPageURI, function(request, response, next) {
-  let textureMapJSON = textureMap.json(textureDirectoryPath);
+  let imageMapJSON = imageMap.json(imageDirectoryPath);
 
-  textureMapJSON = JSON.stringify(textureMapJSON, null, '\t'); ///
+  imageMapJSON = JSON.stringify(imageMapJSON, null, '\t'); ///
 
   const filePath = `${templateDirectoryPath}${indexPageFilePath}`,
         args = {
-          textureMapJSON: textureMapJSON
+          imageMapJSON: imageMapJSON
         },
         html = parseFile(filePath, args);
 
@@ -72,7 +56,7 @@ router.get(indexPageURI, function(request, response, next) {
   response.end(html);
 });
 ```
-The first `textureDirectoryPath` argument of both the `png()` and `json()` methods should be the path of the directory containing the textures. The second `overlayTextureSize` argument of the `png()` method specifies the size of the textures as they appear in the texture map. Choose a power of two, for example 64 or 128. The third `response` argument should be the response object. The `png()` method will set the header and then pipe the image to this object.
+The first `imageDirectoryPath` argument of both the `png()` and `json()` methods should be the path of the directory containing the textures. The second `overlayTextureSize` argument of the `png()` method specifies the size of the textures as they appear in the image map. Choose a power of two, for example 64 or 128. The third `response` argument should be the response object. The `png()` method will set the header and then pipe the image to this object.
 
 The template HTML file should look something like the following:
 ```html
@@ -89,7 +73,7 @@ The template HTML file should look something like the following:
   </body>
 </html>
 ```
-Embedding the texture map JSON description in the HTML this way will make it available as a property of the global object in any script run in the browser. If you think this approach is questionable, you could provide the JSON in the response to an Ajax request. In the remainder of this section it is assumed that JSON has been embedded, however.
+Embedding the image map JSON description in the HTML this way will make it available as a property of the global object in any script run in the browser. If you think this approach is questionable, you could provide the JSON in the response to an Ajax request. In the remainder of this section it is assumed that JSON has been embedded, however.
 
 ## Compiling from source
 

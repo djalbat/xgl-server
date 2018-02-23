@@ -8,31 +8,31 @@ const { miscellaneousUtilities, asynchronousUtilities, fileSystemUtilities } = n
       { whilst } = asynchronousUtilities,
       { readDirectory } = fileSystemUtilities;
 
-function png(textureDirectoryPath, overlayTextureSize, response) {
-  const names = readDirectory(textureDirectoryPath),
+function png(imageDirectoryPath, overlayImageSize, response) {
+  const names = readDirectory(imageDirectoryPath),
         dimension = dimensionFromNames(names);
 
-  createTextureMap(dimension, overlayTextureSize, function(buffer) {
+  createImageMap(dimension, overlayImageSize, function(imageBuffer) {
     const context = {
-      buffer: buffer,
       names: names,
       dimension: dimension,
-      overlayTextureSize: overlayTextureSize,
-      textureDirectoryPath: textureDirectoryPath
+      imageBuffer: imageBuffer,
+      overlayImageSize: overlayImageSize,
+      imageDirectoryPath: imageDirectoryPath
     };
     
     whilst(overlayCallback, function() {
       response.writeHead(200, {'Content-Type': 'image/png; charset=utf-8'});
 
-      const { buffer } = context;
+      const { imageBuffer } = context;
 
-      sharp(buffer).pipe(response);
+      sharp(imageBuffer).pipe(response);
     }, context);
   });
 }
 
-function json(textureDirectoryPath) {
-  const names = readDirectory(textureDirectoryPath),
+function json(imageDirectoryPath) {
+  const names = readDirectory(imageDirectoryPath),
         dimension = dimensionFromNames(names),
         json = names.reduce(function(json, name, index) {
           const left = (index % dimension) / dimension,
@@ -58,9 +58,9 @@ module.exports = {
   json: json
 };
 
-function createTextureMap(dimension, overlayTextureSize,  callback) {
-  const width = dimension * overlayTextureSize,
-        height = dimension * overlayTextureSize,
+function createImageMap(dimension, overlayImageSize,  callback) {
+  const width = dimension * overlayImageSize,
+        height = dimension * overlayImageSize,
         channels = 4,
         background = { r: 0, g: 0, b: 0, alpha: 0 },
         options = {
@@ -76,13 +76,13 @@ function createTextureMap(dimension, overlayTextureSize,  callback) {
   textureMap
     .png()
     .toBuffer()
-    .then(function(buffer) {
-      callback(buffer)
+    .then(function(imageBuffer) {
+      callback(imageBuffer)
     });
 }
 
 function overlayCallback(next, done, context, index) {
-  const { names, buffer, dimension, overlayTextureSize, textureDirectoryPath } = context,
+  const { names, dimension, imageBuffer, overlayImageSize, imageDirectoryPath } = context,
         namesLength = names.length,
         lastIndex = namesLength - 1;
 
@@ -93,22 +93,22 @@ function overlayCallback(next, done, context, index) {
   }
   
   const name = names[index],
-        path = `${textureDirectoryPath}/${name}`;
+        path = `${imageDirectoryPath}/${name}`;
 
-  resizeTexture(path, overlayTextureSize, function(resizedTextureBuffer) {
-    const top = ((dimension - 1) - Math.floor(index / dimension) ) * overlayTextureSize,
-          left = (index % dimension) * overlayTextureSize,
+  resizeImage(path, overlayImageSize, function(resizedImageBuffer) {
+    const top = ((dimension - 1) - Math.floor(index / dimension) ) * overlayImageSize,
+          left = (index % dimension) * overlayImageSize,
           options = {
             top: top,
             left: left
           };
 
-    sharp(buffer)
-      .overlayWith(resizedTextureBuffer, options)
+    sharp(imageBuffer)
+      .overlayWith(resizedImageBuffer, options)
       .toBuffer()
-      .then(function(buffer) {
+      .then(function(imageBuffer) {
         Object.assign(context, {
-          buffer: buffer
+          imageBuffer: imageBuffer
         });
 
         next();
@@ -116,17 +116,17 @@ function overlayCallback(next, done, context, index) {
   });
 }
 
-function resizeTexture(path, overlayTextureSize, callback) {
-  const width = overlayTextureSize, ///
-        height = overlayTextureSize;  ///
+function resizeImage(path, overlayImageSize, callback) {
+  const width = overlayImageSize, ///
+        height = overlayImageSize;  ///
   
   sharp(path)
     .resize(width, height)
     .toBuffer()
-    .then(function(buffer) {
-      const resizedTextureBuffer = buffer; ///
+    .then(function(imageBuffer) {
+      const resizedImageBuffer = imageBuffer; ///
       
-      callback(resizedTextureBuffer);
+      callback(resizedImageBuffer);
     });
 }
 

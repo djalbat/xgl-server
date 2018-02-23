@@ -22,7 +22,7 @@ There is a small Node.js application which can be run from the root of the respo
 
     node ./bin/main.js
 
-This provides two endpoints. The `http://localhost/imageMap` endpoint will serve the example image map whilst the `http://localhost/` endpoint has a blank HTML file with the image map's description embedded within it.
+This provides two endpoints. The `http://localhost:8000/imageMap` endpoint will serve the example image map whilst the `http://localhost:8000/` endpoint has a blank HTML file with the image map's description embedded within it.
     
 # Usage
 
@@ -58,7 +58,7 @@ router.get(indexPageURI, function(request, response, next) {
   });
 });
 ```
-The first `imageDirectoryPath` argument of both functions should be the path of the directory containing the images. The second `overlayImageSize` argument of the `imageMapPNG()` function specifies the size of the images as they appear in the image map. Choose a power of two, for example 64 or 128. The third `response` argument should be the response object. The `imageMapPNG()` function will set the HTTP header and then pipe the image to via this object.
+The first `imageDirectoryPath` argument of both functions should be the path of the directory containing the images. The second `overlayImageSize` argument of the `imageMapPNG()` function specifies the size of the images as they appear in the image map. Choose a power of two, for example 64 or 128. The third `response` argument should be the response object. The `imageMapPNG()` function will set the HTTP header and then pipe the image via this object.
 
 The template HTML file should look something like the following:
 ```html

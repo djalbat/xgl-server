@@ -46,11 +46,11 @@ function createImageMap(dimension, overlayImageSize,  callback) {
           channels: channels,
           background: background
         },
-        textureMap = sharp({
+        imageMap = sharp({
           create: options ///
         });
 
-  textureMap
+  imageMap
     .png()
     .toBuffer()
     .then(function(imageBuffer) {

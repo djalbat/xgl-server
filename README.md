@@ -22,7 +22,7 @@ There is a small Node.js application which can be run from the root of the respo
 
     node ./bin/main.js
 
-This provides two endpoints. The `http://localhost/imageMap` endpoint will serve the example image map whilst the `http://localhost/` endpoint has a blank HTML file with the image map's JSON description embedded within it.
+This provides two endpoints. The `http://localhost/imageMap` endpoint will serve the example image map whilst the `http://localhost/` endpoint has a blank HTML file with the image map's description embedded within it.
     
 # Usage
 
@@ -75,7 +75,7 @@ The template HTML file should look something like the following:
   </body>
 </html>
 ```
-Embedding the image map JSON description in the HTML this way will make it available as a property of the global object in any JavaScript run in the browser. If you think this approach is questionable, you could provide the JSON in the response to an Ajax request. This approach was chosen in order to avoid another Ajax call.
+Embedding the image map JSON within the HTML this way will make it available as a property of the global object in any JavaScript run in the browser. If you think this approach is questionable, you could provide the JSON by way of a response to an Ajax request.
 
 ## Compiling from source
 

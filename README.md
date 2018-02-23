@@ -2,7 +2,7 @@
 
 Image compositing for [Jiggle](https://github.com/djalbat/Jiggle).
 
-Since [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) supports image mapping, so does Jiggle. A drawback of WebGL is that it allows only six textures per shader. One way around this is to use multiple shaders but this can become cumbersome. Another way is image compositing, essentially tiling several images to produce an image map. Jiggles provides this functionality for [Node.js](https://nodejs.org) applications. The reason is that it depends on [Sharp](http://sharp.pixelplumbing.com/), which only runs on Node.js and not in the browser.
+Since [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) supports image mapping, so does Jiggle. A drawback of WebGL is that it allows only six textures per shader. One way around this is to use multiple shaders but this can become cumbersome. Another way is image compositing, essentially tiling several images to produce an image map. Jiggles provides this functionality for [Node.js](https://nodejs.org) applications, the reason being that it depends on [Sharp](http://sharp.pixelplumbing.com/), which only runs on Node.js and not in the browser.
 
 # Installation
 
@@ -26,37 +26,41 @@ This provides two endpoints. The `http://localhost/imageMap` endpoint will serve
     
 # Usage
 
-Both [Express](https://expressjs.com/) and [Necessary](https://github.com/djalbat/Necessary) have been used in the example application. It might be possible to manage without Express if the `response` object provided to the `png()` method explained below supports a `setHeader()` method and can be passed to a `pipe()` method. It is certainly possible to do without Necessary.
-
-Two routes have been set up to provide the aforementioned endpoints.
+Two routes have been set up to provide the aforementioned endpoints. Each makes use of one of the two functions provided by Jiggles. The `imageMapPNG()` function supplies the image map in PNG format whilst the `imageMapJSON()` function provides its description in JSON format.
 ```js
+const jiggles = require('jiggles'),
+      ...;
+
+const { imageMapPNG, imageMapJSON } = jiggles,
+      ...;
+
 const imageMapURI = ...,
       indexPageURL = ...
-      indexPageFilePath = ...,
       overlayImageSize = ...,
+      indexPageFilePath = ...,
       imageDirectoryPath = ...;
 
 router.get(imageMapURI, function(request, response, next) {
-  imageMap.png(imageDirectoryPath, overlayTextureSize, response);
+  imageMapPNG(imageDirectoryPath, overlayTextureSize, response);
 });
 
 router.get(indexPageURI, function(request, response, next) {
-  let imageMapJSON = imageMap.json(imageDirectoryPath);
+  imageMapJSON(imageDirectoryPath, function(imageMapJSON) {
+    imageMapJSON = JSON.stringify(imageMapJSON, null, '\t'); ///
 
-  imageMapJSON = JSON.stringify(imageMapJSON, null, '\t'); ///
+    const filePath = `${templateDirectoryPath}${indexPageFilePath}`,
+          args = {
+            imageMapJSON: imageMapJSON
+          },
+          html = parseFile(filePath, args);
 
-  const filePath = `${templateDirectoryPath}${indexPageFilePath}`,
-        args = {
-          imageMapJSON: imageMapJSON
-        },
-        html = parseFile(filePath, args);
+    response.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
 
-  response.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-
-  response.end(html);
+    response.end(html);
+  });
 });
 ```
-The first `imageDirectoryPath` argument of both the `png()` and `json()` methods should be the path of the directory containing the textures. The second `overlayTextureSize` argument of the `png()` method specifies the size of the textures as they appear in the image map. Choose a power of two, for example 64 or 128. The third `response` argument should be the response object. The `png()` method will set the header and then pipe the image to this object.
+The first `imageDirectoryPath` argument of both the `png()` and `json()` functions should be the path of the directory containing the textures. The second `overlayTextureSize` argument of the `png()` function specifies the size of the textures as they appear in the image map. Choose a power of two, for example 64 or 128. The third `response` argument should be the response object. The `png()` function will set the header and then pipe the image to this object.
 
 The template HTML file should look something like the following:
 ```html

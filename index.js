@@ -1,5 +1,6 @@
 'use strict';
 
 module.exports = {
-  imageMap: require('./lib/imageMap')
+  imageMapPNG: require('./lib/imageMapPNG'),
+  imageMapJSON: require('./lib/imageMapJSON')
 };

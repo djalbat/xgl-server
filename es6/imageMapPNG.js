@@ -3,12 +3,14 @@
 const sharp = require('sharp'),
       necessary = require('necessary');
 
-const { miscellaneousUtilities, asynchronousUtilities, fileSystemUtilities } = necessary,
-      { rc } = miscellaneousUtilities,
-      { whilst } = asynchronousUtilities,
-      { readDirectory } = fileSystemUtilities;
+const namesUtilities = require('./utilities/names');
 
-function png(imageDirectoryPath, overlayImageSize, response) {
+const { asynchronousUtilities, fileSystemUtilities } = necessary,
+      { whilst } = asynchronousUtilities,
+      { readDirectory } = fileSystemUtilities,
+      { dimensionFromNames } = namesUtilities;
+
+function imageMapPNG(imageDirectoryPath, overlayImageSize, response) {
   const names = readDirectory(imageDirectoryPath),
         dimension = dimensionFromNames(names);
 
@@ -31,32 +33,7 @@ function png(imageDirectoryPath, overlayImageSize, response) {
   });
 }
 
-function json(imageDirectoryPath) {
-  const names = readDirectory(imageDirectoryPath),
-        dimension = dimensionFromNames(names),
-        json = names.reduce(function(json, name, index) {
-          const left = (index % dimension) / dimension,
-                bottom = Math.floor(index / dimension) / dimension,
-                width = 1 / dimension,
-                height = 1 / dimension;
-
-          json[name] = {
-            left: left,
-            bottom: bottom,
-            width: width,
-            height: height
-          };
-
-          return json;
-        }, {});
-        
-  return json;
-}
-
-module.exports = {
-  png: png,
-  json: json
-};
+module.exports = imageMapPNG;
 
 function createImageMap(dimension, overlayImageSize,  callback) {
   const width = dimension * overlayImageSize,
@@ -128,11 +105,4 @@ function resizeImage(path, overlayImageSize, callback) {
       
       callback(resizedImageBuffer);
     });
-}
-
-function dimensionFromNames(names) {
-  const namesLength = names.length,
-        dimension = Math.ceil(Math.sqrt(namesLength)); ///
-
-  return dimension;
 }

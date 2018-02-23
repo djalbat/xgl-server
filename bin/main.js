@@ -10,8 +10,8 @@ const { templateUtilities, miscellaneousUtilities } = necessary,
       { onETX, rc } = miscellaneousUtilities,
       { parseFile } = templateUtilities,
       { argv, exit } = process,
-      { textureMap } = jiggles,
-      { TEXTURE_MAP_URI, OVERLAY_TEXTURE_SIZE, INDEX_PAGE_URI, INDEX_PAGE_FILE_PATH } = constants;
+      { imageMapPNG, imageMapJSON } = jiggles,
+      { IMAGE_MAP_URI, OVERLAY_IMAGE_SIZE, INDEX_PAGE_URI, INDEX_PAGE_FILE_PATH } = constants;
 
 onETX(exit);
 
@@ -22,30 +22,30 @@ createServer();
 function createServer() {
   const server = express(), ///
         router = express.Router(),
-        { port, textureDirectoryPath, templateDirectoryPath } = rc,
-        textureMapURI = TEXTURE_MAP_URI,
+        { port, imageDirectoryPath, templateDirectoryPath } = rc,
+        imageMapURI = IMAGE_MAP_URI,
         indexPageURI = INDEX_PAGE_URI,
-        indexPageFilePath = INDEX_PAGE_FILE_PATH,
-        overlayTextureSize = OVERLAY_TEXTURE_SIZE;
+        overlayImageSize = OVERLAY_IMAGE_SIZE,
+        indexPageFilePath = INDEX_PAGE_FILE_PATH;
 
-    router.get(textureMapURI, function(request, response, next) {
-      textureMap.png(textureDirectoryPath, overlayTextureSize, response);
+    router.get(imageMapURI, function(request, response, next) {
+      imageMapPNG(imageDirectoryPath, overlayImageSize, response);
     });
         
     router.get(indexPageURI, function(request, response, next) {
-      let textureMapJSON = textureMap.json(textureDirectoryPath);
+      imageMapJSON(imageDirectoryPath, function(imageMapJSON) {
+        imageMapJSON = JSON.stringify(imageMapJSON, null, '\t'); ///
     
-      textureMapJSON = JSON.stringify(textureMapJSON, null, '\t'); ///
-    
-      const filePath = `${templateDirectoryPath}${indexPageFilePath}`,
-            args = {
-              textureMapJSON: textureMapJSON
-            },
-            html = parseFile(filePath, args);
-    
-      response.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-
-      response.end(html);
+        const filePath = `${templateDirectoryPath}${indexPageFilePath}`,
+              args = {
+                imageMapJSON: imageMapJSON
+              },
+              html = parseFile(filePath, args);
+      
+        response.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+  
+        response.end(html);
+      });
     });
 
   server.use(router);

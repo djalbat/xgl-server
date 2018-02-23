@@ -28,11 +28,9 @@ This provides two endpoints. The `http://localhost/imageMap` endpoint will serve
 
 Two routes have been set up to provide the aforementioned endpoints. Each makes use of one of the two functions provided by Jiggles. The `imageMapPNG()` function supplies the image map in PNG format whilst the `imageMapJSON()` function provides its description in JSON format.
 ```js
-const jiggles = require('jiggles'),
-      ...;
+const jiggles = require('jiggles');
 
-const { imageMapPNG, imageMapJSON } = jiggles,
-      ...;
+const { imageMapPNG, imageMapJSON } = jiggles;
 
 const imageMapURI = ...,
       indexPageURL = ...
@@ -41,7 +39,7 @@ const imageMapURI = ...,
       imageDirectoryPath = ...;
 
 router.get(imageMapURI, function(request, response, next) {
-  imageMapPNG(imageDirectoryPath, overlayTextureSize, response);
+  imageMapPNG(imageDirectoryPath, overlayImageSize, response);
 });
 
 router.get(indexPageURI, function(request, response, next) {
@@ -60,7 +58,7 @@ router.get(indexPageURI, function(request, response, next) {
   });
 });
 ```
-The first `imageDirectoryPath` argument of both the `png()` and `json()` functions should be the path of the directory containing the textures. The second `overlayTextureSize` argument of the `png()` function specifies the size of the textures as they appear in the image map. Choose a power of two, for example 64 or 128. The third `response` argument should be the response object. The `png()` function will set the header and then pipe the image to this object.
+The first `imageDirectoryPath` argument of both functions should be the path of the directory containing the images. The second `overlayImageSize` argument of the `imageMapPNG()` function specifies the size of the images as they appear in the image map. Choose a power of two, for example 64 or 128. The third `response` argument should be the response object. The `imageMapPNG()` function will set the header and then pipe the image to this object.
 
 The template HTML file should look something like the following:
 ```html
@@ -77,7 +75,7 @@ The template HTML file should look something like the following:
   </body>
 </html>
 ```
-Embedding the image map JSON description in the HTML this way will make it available as a property of the global object in any script run in the browser. If you think this approach is questionable, you could provide the JSON in the response to an Ajax request. In the remainder of this section it is assumed that JSON has been embedded, however.
+Embedding the image map JSON description in the HTML this way will make it available as a property of the global object in any JavaScript run in the browser. If you think this approach is questionable, you could provide the JSON in the response to an Ajax request. This approach was chosen in order to avoid another Ajax call.
 
 ## Compiling from source
 

@@ -2,7 +2,7 @@
 
 Image compositing for [Jiggle](https://github.com/djalbat/Jiggle).
 
-Since [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) supports image mapping, so does Jiggle. A drawback of WebGL is that it allows only six textures per shader. One way around this is to use multiple shaders but this can become cumbersome. Another way around is image compositing, essentially tiling several images to produce an image map. Jiggles provides image compositing for [Node.js](https://nodejs.org) applications. The reason is that it depends on [Sharp](http://sharp.pixelplumbing.com/), which only runs on Node.js and not in the browser.
+Since [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) supports image mapping, so does Jiggle. A drawback of WebGL is that it allows only six textures per shader. One way around this is to use multiple shaders but this can become cumbersome. Another way around is to use image compositing, essentially tiling several images to produce an image map. Jiggles provides image compositing for [Node.js](https://nodejs.org) applications. The reason is that it depends on [Sharp](http://sharp.pixelplumbing.com/), which only runs on Node.js and not in the browser.
 
 # Installation
 

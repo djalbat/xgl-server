@@ -58,7 +58,7 @@ router.get(indexPageURI, function(request, response, next) {
   });
 });
 ```
-The first `imageDirectoryPath` argument of both functions should be the path of the directory containing the images. The second `overlayImageSize` argument of the `imageMapPNG()` function specifies the size of the images as they appear in the image map. Choose a power of two, for example 64 or 128. The third `response` argument should be the response object. The `imageMapPNG()` function will set the header and then pipe the image to this object.
+The first `imageDirectoryPath` argument of both functions should be the path of the directory containing the images. The second `overlayImageSize` argument of the `imageMapPNG()` function specifies the size of the images as they appear in the image map. Choose a power of two, for example 64 or 128. The third `response` argument should be the response object. The `imageMapPNG()` function will set the HTTP header and then pipe the image to via this object.
 
 The template HTML file should look something like the following:
 ```html
@@ -75,7 +75,7 @@ The template HTML file should look something like the following:
   </body>
 </html>
 ```
-Embedding the image map JSON within the HTML this way will make it available as a property of the global object in any JavaScript run in the browser. If you think this approach is questionable, you could provide the JSON by way of a response to an Ajax request.
+Embedding the image map JSON within the HTML in this way will make it available as a property of the global object in any JavaScript run in the browser. If you think this approach is questionable, you could provide the JSON by way of a response to an Ajax request.
 
 ## Compiling from source
 

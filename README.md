@@ -4,7 +4,7 @@ Image compositing for [Jiggle](https://github.com/djalbat/Jiggle).
 
 Since [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) supports image mapping, so does Jiggle. A drawback of WebGL is that it allows only six textures per shader. One way around this is to use multiple shaders but this can become cumbersome. Another way is image compositing, essentially tiling several images to produce an image map. Jiggles provides this functionality for [Node.js](https://nodejs.org) applications, the reason being that it depends on [Sharp](http://sharp.pixelplumbing.com/), which only runs on Node.js and not in the browser.
 
-# Installation
+## Installation
 
 You can clone the repository with [Git](https://git-scm.com/)...
 
@@ -16,7 +16,7 @@ You can clone the repository with [Git](https://git-scm.com/)...
 
 You will need to do this if you want to look at the example.
 
-# Example
+## Example
 
 There is a small Node.js application which can be run from the root of the respository:
 
@@ -24,7 +24,7 @@ There is a small Node.js application which can be run from the root of the respo
 
 This provides two endpoints. The `http://localhost:8000/imageMap` endpoint will serve the example image map whilst the `http://localhost:8000/` endpoint has a blank HTML file with the image map's description embedded within it.
     
-# Usage
+## Usage
 
 Two routes have been set up to provide the aforementioned endpoints. Each makes use of one of the two functions provided by Jiggles. The `imageMapPNG()` function supplies the image map in PNG format whilst the `imageMapJSON()` function provides its description in JSON format.
 ```js

@@ -22,7 +22,7 @@
   },
   "scripts": {
     "clean": "rm -rf ./lib",
-    "babel": "babel ./es6 --presets=es2015,react --out-dir=./lib",
+    "babel": "babel ./es6 --presets=es2015 --out-dir=./lib",
     "babel-debug": "babel ./es6 --presets=es2015,react --source-maps inline --out-dir=./lib",
     "build": "npm run clean && npm run babel",
     "build-debug": "npm run clean && npm run babel-debug",

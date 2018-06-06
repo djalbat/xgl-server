@@ -58,7 +58,7 @@ router.get(indexPageURI, function(request, response, next) {
   });
 });
 ```
-The first `imageDirectoryPath` argument of both functions should be the path of the directory containing the images. Hidden files on unixy systems, that is those starting with a period `.`, are removed. The second `overlayImageSize` argument of the `imageMapPNG()` function specifies the size of the images as they appear in the image map. Choose a power of two, for example 64 or 128. The third `response` argument should be the response object. The `imageMapPNG()` function will set the HTTP header and then pipe the image via this object.
+The first `imageDirectoryPath` argument of both functions should be the path of the directory containing the images. Hidden files on unixy systems, that is those with names starting with a period `.`, are removed. The second `overlayImageSize` argument of the `imageMapPNG()` function specifies the size of the images as they appear in the image map. Choose a power of two, for example 64 or 128. The third `response` argument should be the response object. The `imageMapPNG()` function will set the HTTP header and then pipe the image via this object.
 
 The template HTML file should look something like the following:
 ```html

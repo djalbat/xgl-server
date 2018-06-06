@@ -8,11 +8,14 @@ const namesUtilities = require('./utilities/names');
 const { asynchronousUtilities, fileSystemUtilities } = necessary,
       { whilst } = asynchronousUtilities,
       { readDirectory } = fileSystemUtilities,
-      { dimensionFromNames } = namesUtilities;
+      { removeHiddenNames, dimensionFromNames } = namesUtilities;
 
 function imageMapPNG(imageDirectoryPath, overlayImageSize, response) {
-  const names = readDirectory(imageDirectoryPath),
-        dimension = dimensionFromNames(names);
+  let names = readDirectory(imageDirectoryPath);
+
+	names = removeHiddenNames(names);
+
+	const dimension = dimensionFromNames(names);
 
   createImageMap(dimension, overlayImageSize, function(imageBuffer) {
     const context = {

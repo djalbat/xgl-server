@@ -6,11 +6,14 @@ const namesUtilities = require('./utilities/names');
 
 const { fileSystemUtilities } = necessary,
       { readDirectory } = fileSystemUtilities,
-      { dimensionFromNames } = namesUtilities;
+      { removeHiddenNames, dimensionFromNames } = namesUtilities;
 
 function imageMapJSON(imageDirectoryPath, callback) {
-  const names = readDirectory(imageDirectoryPath),
-        dimension = dimensionFromNames(names),
+	let names = readDirectory(imageDirectoryPath);
+
+	names = removeHiddenNames(names);
+
+	const dimension = dimensionFromNames(names),
         imageMapJSON = names.reduce(function(imageMapJSON, name, index) {
           const left = (index % dimension) / dimension,
                 bottom = Math.floor(index / dimension) / dimension,

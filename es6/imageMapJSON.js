@@ -8,8 +8,12 @@ const { fileSystemUtilities } = necessary,
       { readDirectory } = fileSystemUtilities,
       { removeHiddenNames, dimensionFromNames } = namesUtilities;
 
-function imageMapJSON(imageDirectoryPath, callback) {
-	let names = readDirectory(imageDirectoryPath);
+function imageMapJSON(names, imageDirectoryPath, callback) {
+	if (!callback) {
+		callback = imageDirectoryPath;
+		imageDirectoryPath = names;
+		names = readDirectory(imageDirectoryPath);
+	}
 
 	names = removeHiddenNames(names);
 

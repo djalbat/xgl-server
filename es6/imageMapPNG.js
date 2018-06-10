@@ -10,8 +10,13 @@ const { asynchronousUtilities, fileSystemUtilities } = necessary,
       { readDirectory } = fileSystemUtilities,
       { removeHiddenNames, dimensionFromNames } = namesUtilities;
 
-function imageMapPNG(imageDirectoryPath, overlayImageSize, response) {
-  let names = readDirectory(imageDirectoryPath);
+function imageMapPNG(names, imageDirectoryPath, overlayImageSize, response) {
+	if (!response) {
+		response = overlayImageSize;
+		overlayImageSize = imageDirectoryPath;
+		imageDirectoryPath = names;
+		names = readDirectory(imageDirectoryPath);
+	}
 
 	names = removeHiddenNames(names);
 

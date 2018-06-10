@@ -1,54 +1,31 @@
 'use strict';
 
-const jiggles = require('../index'), ///
-      express = require('express'),
+const express = require('express'),
       necessary = require('necessary');
 
-const constants = require('./constants');
+const routes = require('./routes'),
+			constants = require('./constants');
 
-const { templateUtilities, miscellaneousUtilities } = necessary,
+const { miscellaneousUtilities } = necessary,
       { onETX, rc } = miscellaneousUtilities,
-      { parseFile } = templateUtilities,
+			{ IMAGE_MAP_URI, INDEX_PAGE_URI } = constants,
       { argv, exit } = process,
-      { imageMapPNG, imageMapJSON } = jiggles,
-      { IMAGE_MAP_URI, OVERLAY_IMAGE_SIZE, INDEX_PAGE_URI, INDEX_PAGE_FILE_PATH } = constants;
-
-onETX(exit);
+			{ imageMap, indexPage } = routes;
 
 rc(argv);
 
-createServer();
+const server = express(), ///
+      router = express.Router(),
+      { port } = rc,
+      imageMapURI = IMAGE_MAP_URI,
+      indexPageURI = INDEX_PAGE_URI;
 
-function createServer() {
-  const server = express(), ///
-        router = express.Router(),
-        { port, imageDirectoryPath, templateDirectoryPath } = rc,
-        imageMapURI = IMAGE_MAP_URI,
-        indexPageURI = INDEX_PAGE_URI,
-        overlayImageSize = OVERLAY_IMAGE_SIZE,
-        indexPageFilePath = INDEX_PAGE_FILE_PATH;
+router.get(imageMapURI, imageMap);
 
-    router.get(imageMapURI, function(request, response, next) {
-      imageMapPNG(imageDirectoryPath, overlayImageSize, response);
-    });
-        
-    router.get(indexPageURI, function(request, response, next) {
-      imageMapJSON(imageDirectoryPath, function(imageMapJSON) {
-        imageMapJSON = JSON.stringify(imageMapJSON, null, '\t'); ///
-    
-        const filePath = `${templateDirectoryPath}${indexPageFilePath}`,
-              args = {
-                imageMapJSON: imageMapJSON
-              },
-              html = parseFile(filePath, args);
-      
-        response.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-  
-        response.end(html);
-      });
-    });
+router.get(indexPageURI, indexPage);
 
-  server.use(router);
+server.use(router);
 
-  server.listen(port);
-}
+server.listen(port);
+
+onETX(exit);

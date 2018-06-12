@@ -24,7 +24,7 @@ There is a small Node.js application which can be run from the root of the repos
 
     node ./bin/main.js
 
-This provides two endpoints. The `http://localhost:8000/imageMap` endpoint will serve the example image map whilst the `http://localhost:8000/` endpoint has a blank HTML file with the image map's description embedded within it.
+This provides two endpoints. The `http://localhost:8000/imageMap` endpoint will serve the example image map whilst the `http://localhost:8000/` endpoint has a blank HTML file with the image map's corresponding JSON representation embedded within it.
     
 ## Usage
 

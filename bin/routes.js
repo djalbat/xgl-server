@@ -16,9 +16,7 @@ function imageMap(request, response) {
 				names = namesFromRequest(request),
 				overlayImageSize = OVERLAY_IMAGE_SIZE;
 
-	names ?
-		imageMapPNG(names, imageDirectoryPath, overlayImageSize, response) :
-			imageMapPNG(imageDirectoryPath, overlayImageSize, response);
+	imageMapPNG(names, imageDirectoryPath, overlayImageSize, response);
 }
 
 function indexPage(request, response) {
@@ -26,9 +24,7 @@ function indexPage(request, response) {
 				names = namesFromRequest(request),
 				indexPageFilePath = INDEX_PAGE_FILE_PATH;
 
-	names ?
-		imageMapJSON(names, imageDirectoryPath, writeImageMapJSON) :
-			imageMapJSON(imageDirectoryPath, writeImageMapJSON);
+	imageMapJSON(names, imageDirectoryPath, writeImageMapJSON) ;
 
 	function writeImageMapJSON(imageMapJSON) {
 		imageMapJSON = JSON.stringify(imageMapJSON, null, '\t'); ///
@@ -55,9 +51,9 @@ function namesFromRequest(request) {
 
 	let { names } = query;
 
-	if (names) {
-		names = names.split(',');
-	}
+	names = names ? ////
+					  names.split(',') :
+							[];
 
 	return names;
 }

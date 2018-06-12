@@ -4,7 +4,7 @@ Image compositing for [Jiggle](https://github.com/djalbat/Jiggle).
 
 Since [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) supports texture mapping, so does Jiggle. A drawback of WebGL, however, is that it allows only six textures per shader. One way around this problem is to use multiple shaders, but this can become cumbersome. A better solution is to use image compositing, essentially tiling several textures to produce an image map. This is what Jiggles provides, together with a corresponding JSON representation of the map that can be used to configure shaders to extract each texture.
 
-Jiggles runs on the server and not in the browser, the reason being that it depends on [Sharp](http://sharp.pixelplumbing.com/). The easiest way to make image maps and their corresponding JSON representations available to Jiggle applications running in a browser, therefore, as by way of a small NodeJS application implementing the requisite endpoints. This application includes such an application and an explanation of it is given below.
+Jiggles runs on the server and not in the browser, the reason being that it depends on [Sharp](http://sharp.pixelplumbing.com/). The easiest way to make image maps and their corresponding JSON representations available to Jiggle applications running in a browser, therefore, is by way of a small NodeJS application implementing endpoints for each. This application includes such an application and an explanation of it is given below.
 
 ## Installation
 

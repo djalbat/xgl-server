@@ -24,9 +24,7 @@ function indexPage(request, response) {
 				names = namesFromRequest(request),
 				indexPageFilePath = INDEX_PAGE_FILE_PATH;
 
-	imageMapJSON(names, imageDirectoryPath, writeImageMapJSON) ;
-
-	function writeImageMapJSON(imageMapJSON) {
+	imageMapJSON(names, imageDirectoryPath, function (imageMapJSON) {
 		imageMapJSON = JSON.stringify(imageMapJSON, null, '\t'); ///
 
 		const filePath = `${templateDirectoryPath}${indexPageFilePath}`,
@@ -38,7 +36,7 @@ function indexPage(request, response) {
 		response.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
 
 		response.end(html);
-	}
+	});
 }
 
 module.exports = {

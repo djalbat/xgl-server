@@ -9,9 +9,9 @@ const { fileSystemUtilities } = necessary,
       { removeHiddenNames, dimensionFromNames } = namesUtilities;
 
 function imageMapJSON(names, imageDirectoryPath, callback) {
-	if (!callback) {
-		callback = imageDirectoryPath;
-		imageDirectoryPath = names;
+	const namesLength = names.length;
+
+	if (namesLength === 0) {
 		names = readDirectory(imageDirectoryPath);
 	}
 
@@ -25,10 +25,10 @@ function imageMapJSON(names, imageDirectoryPath, callback) {
                 height = 1 / dimension;
 
           imageMapJSON[name] = {
-            left: left,
-            bottom: bottom,
-            width: width,
-            height: height
+            left,
+            bottom,
+            width,
+            height
           };
 
           return imageMapJSON;

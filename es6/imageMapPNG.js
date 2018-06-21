@@ -11,10 +11,9 @@ const { asynchronousUtilities, fileSystemUtilities } = necessary,
       { removeHiddenNames, dimensionFromNames } = namesUtilities;
 
 function imageMapPNG(names, imageDirectoryPath, overlayImageSize, response) {
-	if (!response) {
-		response = overlayImageSize;
-		overlayImageSize = imageDirectoryPath;
-		imageDirectoryPath = names;
+	const namesLength = names.length;
+
+	if (namesLength === 0) {
 		names = readDirectory(imageDirectoryPath);
 	}
 
@@ -24,11 +23,11 @@ function imageMapPNG(names, imageDirectoryPath, overlayImageSize, response) {
 
   createImageMap(dimension, overlayImageSize, function(imageBuffer) {
     const context = {
-      names: names,
-      dimension: dimension,
-      imageBuffer: imageBuffer,
-      overlayImageSize: overlayImageSize,
-      imageDirectoryPath: imageDirectoryPath
+      names,
+      dimension,
+      imageBuffer,
+      overlayImageSize,
+      imageDirectoryPath
     };
     
     whilst(overlayCallback, function() {
@@ -46,16 +45,26 @@ module.exports = imageMapPNG;
 function createImageMap(dimension, overlayImageSize,  callback) {
   const width = dimension * overlayImageSize,
         height = dimension * overlayImageSize,
+			  alpha = 0,
         channels = 4,
-        background = { r: 0, g: 0, b: 0, alpha: 0 },
-        options = {
-          width: width,
-          height: height,
-          channels: channels,
-          background: background
+			  r = 0,
+			  g = 0,
+			  b = 0,
+        background = {
+  	      r,
+	        g,
+	        b,
+	        alpha
         },
+        options = {
+          width,
+          height,
+          channels,
+          background
+        },
+			  create = options, ///
         imageMap = sharp({
-          create: options ///
+          create
         });
 
   imageMap

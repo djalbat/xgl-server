@@ -22,6 +22,6 @@ function dimensionFromNames(names) {
 }
 
 module.exports = {
-	removeHiddenNames: removeHiddenNames,
-  dimensionFromNames: dimensionFromNames
+	removeHiddenNames,
+  dimensionFromNames
 };

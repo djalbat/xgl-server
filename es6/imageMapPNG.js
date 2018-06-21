@@ -93,8 +93,8 @@ function overlayCallback(next, done, context, index) {
     const top = ((dimension - 1) - Math.floor(index / dimension) ) * overlayImageSize,
           left = (index % dimension) * overlayImageSize,
           options = {
-            top: top,
-            left: left
+            top,
+            left
           };
 
     sharp(imageBuffer)
@@ -102,7 +102,7 @@ function overlayCallback(next, done, context, index) {
       .toBuffer()
       .then(function(imageBuffer) {
         Object.assign(context, {
-          imageBuffer: imageBuffer
+          imageBuffer
         });
 
         next();

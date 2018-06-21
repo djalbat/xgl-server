@@ -28,38 +28,8 @@ This provides two endpoints. The `http://localhost:8000/imageMap` endpoint will 
     
 ## Usage
 
-Two routes have been set up to provide the aforementioned endpoints. Each makes use of one of the two functions provided by Jiggles. The `imageMapPNG()` function supplies the image map in PNG format whilst the `imageMapJSON()` function provides its description in JSON format.
-```js
-const jiggles = require('jiggles');
+Two routes have been set up in the [main.js](https://github.com/djalbat/Jiggles/blob/master/bin/main.js) and [routes.js](https://github.com/djalbat/Jiggles/blob/master/bin/routes.js) files in order to provide the aforementioned endpoints. Each makes use of one of the two functions provided by Jiggles. The `imageMapPNG()` function supplies the image map in PNG format whilst the `imageMapJSON()` function provides its description in JSON format.
 
-const { imageMapPNG, imageMapJSON } = jiggles;
-
-const imageMapURI = ...,
-      indexPageURL = ...
-      overlayImageSize = ...,
-      indexPageFilePath = ...,
-      imageDirectoryPath = ...;
-
-router.get(imageMapURI, function(request, response, next) {
-  imageMapPNG(imageDirectoryPath, overlayImageSize, response);
-});
-
-router.get(indexPageURI, function(request, response, next) {
-  imageMapJSON(imageDirectoryPath, function(imageMapJSON) {
-    imageMapJSON = JSON.stringify(imageMapJSON, null, '\t'); ///
-
-    const filePath = `${templateDirectoryPath}${indexPageFilePath}`,
-          args = {
-            imageMapJSON: imageMapJSON
-          },
-          html = parseFile(filePath, args);
-
-    response.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-
-    response.end(html);
-  });
-});
-```
 The first `imageDirectoryPath` argument of both functions should be the path of the directory containing the images. Hidden files on unixy systems, that is those with names starting with a period `.`, are removed. The second `overlayImageSize` argument of the `imageMapPNG()` function specifies the size of the images as they appear in the image map. Choose a power of two, for example 64 or 128. The third `response` argument should be the response object. The `imageMapPNG()` function will set the HTTP header and then pipe the image via this object.
 
 The template HTML file should look something like the following:

@@ -29,7 +29,7 @@ function indexPage(request, response) {
 
 		const filePath = `${templateDirectoryPath}${indexPageFilePath}`,
 					args = {
-						imageMapJSON: imageMapJSON
+						imageMapJSON
 					},
 					html = parseFile(filePath, args);
 
@@ -40,8 +40,8 @@ function indexPage(request, response) {
 }
 
 module.exports = {
-	imageMap: imageMap,
-	indexPage: indexPage
+	imageMap,
+	indexPage
 };
 
 function namesFromRequest(request) {

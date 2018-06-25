@@ -24,7 +24,11 @@ There is a small Node.js application which can be run from the root of the repos
 
     node ./bin/main.js
 
-This provides two endpoints. The `http://localhost:8000/imageMap` endpoint will serve the example image map whilst the `http://localhost:8000/` endpoint serves a blank HTML file with the image map's corresponding JSON representation embedded within it. Four example images of differing formats can be found in the `image` directory (for technical reasons they are referred to as images rather than textures from here on in). You can specify which images make up the image map with a suitable query string for both endpoints, for example `http://localhost:8000/imageMap?names=blue.jpg,green.png,red.jpg`. If you do not specify any names, all of the images will be used.
+This provides two endpoints. The `http://localhost:8000/imageMap` endpoint will serve the example image map whilst the `http://localhost:8000/` endpoint serves a blank HTML file with the image map's corresponding JSON representation embedded within it. Four example images of differing formats can be found in the `image` directory (for technical reasons they are referred to as images rather than textures from here on in). You can specify which images make up the image map with a suitable query string for both endpoints. For example:
+
+* `http://localhost:8000/imageMap?names=blue.jpg,green.png,red.jpg`.
+
+If you do not specify any names, all of the images will be used.
 
 ## Usage
 

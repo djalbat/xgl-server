@@ -21,7 +21,7 @@ function imageMapPNG(names, imageDirectoryPath, overlayImageSize, response) {
 
 	const dimension = dimensionFromNames(names);
 
-  createImageMap(dimension, overlayImageSize, function(imageBuffer) {
+	createImageMap(dimension, overlayImageSize, function(imageBuffer) {
     const context = {
       names,
       dimension,
@@ -123,3 +123,4 @@ function resizeImage(path, overlayImageSize, callback) {
       callback(resizedImageBuffer);
     });
 }
+

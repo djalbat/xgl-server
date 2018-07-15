@@ -49,7 +49,7 @@ Two routes have been set up in the [main.js](https://github.com/djalbat/Jiggles/
 </html>
 ```
 
-Embedding the image map JSON within the HTML in this way will make it globally available in any JavaScript run in the browser. If you think this approach is questionable, you could provide the JSON by way of an Ajax request. It is recommended that you use the example application as a starting point should you wish to write your own service to support your Jiggle application.
+Embedding the image map JSON within the HTML in this way will make it globally available in any JavaScript run in the browser. If you think this approach is questionable, you could provide the JSON by way of an Ajax request. Either way, it is recommended that you use the example application as a starting point should you wish to write your own service to support your Jiggle application.
 
 Finally, the signatures of the functions that Jiggles provides:
 

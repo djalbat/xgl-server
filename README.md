@@ -58,7 +58,7 @@ Two routes have been set up in the [main.js](https://github.com/djalbat/Jiggles/
 </html>
 ```
 
-Embedding the image map JSON within the HTML in this way will make it available as a property of the `window` object to any JavaScript running in the browser. If you think this approach is questionable, you could add a route to provide the JSON by way of an Ajax request. Either way, it is recommended that you use the example application as a starting point should you wish to write your own service to support your Jiggle application.
+Embedding the image map JSON within the HTML in this way will make it available as a property of the `window` object to any JavaScript running in the browser. If you think this approach is questionable, you could add a route to provide the JSON by way of an Ajax request.
 
 Finally, the signatures of the two main functions that Jiggles provides:
 
@@ -71,7 +71,7 @@ function imageMapJSON(names, imageDirectoryPath, callback) {
   ...
 }
 ```
-Note that the `imageMapPNG(...)` function pipes the image it creates directly to a `response` object rather than returning it via a callback.
+Note that the `imageMapPNG(...)` function pipes the image directly to a `response` object rather than returning it via a callback.
 
 ## Compiling from source
 

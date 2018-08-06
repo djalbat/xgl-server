@@ -1,7 +1,7 @@
 {
   "name": "jiggles",
   "author": "James Smith",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "license": "MIT",
   "homepage": "https://github.com/djalbat/Jiggles",
   "description": "Image compositing for Jiggle.",
@@ -23,7 +23,7 @@
   "scripts": {
     "clean": "rm -rf ./lib",
     "babel": "babel ./es6 --presets=es2015 --out-dir=./lib",
-    "babel-debug": "babel ./es6 --presets=es2015,react --source-maps inline --out-dir=./lib",
+    "babel-debug": "babel ./es6 --presets=es2015 --source-maps inline --out-dir=./lib",
     "build": "npm run clean && npm run babel",
     "build-debug": "npm run clean && npm run babel-debug",
     "watch": "npm run build && chokidar './index.js' './es6/**/*.js' -c 'npm run build'",

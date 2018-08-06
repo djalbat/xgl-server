@@ -3,12 +3,14 @@
 const sharp = require('sharp'),
       necessary = require('necessary');
 
-const namesUtilities = require('./utilities/names');
+const constants = require('./constants'),
+			namesUtilities = require('./utilities/names');
 
 const { asynchronousUtilities, fileSystemUtilities } = necessary,
       { whilst } = asynchronousUtilities,
       { readDirectory } = fileSystemUtilities,
-      { removeHiddenNames, dimensionFromNames } = namesUtilities;
+      { removeHiddenNames, dimensionFromNames } = namesUtilities,
+			{ RED, BLUE, GREEN, ALPHA, CHANNELS } = constants;
 
 function imageMapPNG(names, imageDirectoryPath, overlayImageSize, response) {
 	const namesLength = names.length;
@@ -45,11 +47,11 @@ module.exports = imageMapPNG;
 function createImageMap(dimension, overlayImageSize,  callback) {
   const width = dimension * overlayImageSize,
         height = dimension * overlayImageSize,
-			  alpha = 0,
-        channels = 4,
-			  r = 0,
-			  g = 0,
-			  b = 0,
+			  alpha = ALPHA,
+        channels = CHANNELS,
+			  r = RED,	///
+			  g = GREEN,	///
+			  b = BLUE,	///
         background = {
   	      r,
 	        g,
@@ -119,8 +121,7 @@ function resizeImage(path, overlayImageSize, callback) {
     .toBuffer()
     .then(function(imageBuffer) {
       const resizedImageBuffer = imageBuffer; ///
-      
+
       callback(resizedImageBuffer);
     });
 }
-

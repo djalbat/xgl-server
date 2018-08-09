@@ -44,9 +44,10 @@ function imageMapPNG(names, imageDirectoryPath, overlayImageSize, response) {
 
 module.exports = imageMapPNG;
 
-function createImageMap(dimension, overlayImageSize,  callback) {
-  const width = dimension * overlayImageSize,
-        height = dimension * overlayImageSize,
+function createImageMap(dimension, overlayImageSize, callback) {
+  const size = dimension * overlayImageSize,
+				width = size,	///
+        height = size,	///
 			  alpha = ALPHA,
         channels = CHANNELS,
 			  r = RED,	///
@@ -92,7 +93,7 @@ function overlayCallback(next, done, context, index) {
         path = `${imageDirectoryPath}/${name}`;
 
   resizeImage(path, overlayImageSize, function(resizedImageBuffer) {
-    const top = ((dimension - 1) - Math.floor(index / dimension) ) * overlayImageSize,
+    const top = ((dimension - 1) - Math.floor(index / dimension)) * overlayImageSize,
           left = (index % dimension) * overlayImageSize,
           options = {
             top,

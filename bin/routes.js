@@ -22,9 +22,10 @@ function imageMap(request, response) {
 function indexPage(request, response) {
 	const { imageDirectoryPath, templateDirectoryPath } = rc,
 				names = namesFromRequest(request),
-				indexPageFilePath = INDEX_PAGE_FILE_PATH;
+				indexPageFilePath = INDEX_PAGE_FILE_PATH,
+				overlayImageSize = OVERLAY_IMAGE_SIZE;
 
-	imageMapJSON(names, imageDirectoryPath, function (imageMapJSON) {
+	imageMapJSON(names, imageDirectoryPath, overlayImageSize, function (imageMapJSON) {
 		imageMapJSON = JSON.stringify(imageMapJSON, null, '\t'); ///
 
 		const filePath = `${templateDirectoryPath}${indexPageFilePath}`,

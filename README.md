@@ -67,7 +67,7 @@ function imageMapPNG(names, imageDirectoryPath, overlayImageSize, response) {
   ...
 }
 
-function imageMapJSON(names, imageDirectoryPath, callback) {
+function imageMapJSON(names, imageDirectoryPath, overlayImageSize, callback) {
   ...
 }
 ```

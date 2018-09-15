@@ -1,13 +1,13 @@
 {
   "name": "jiggles",
   "author": "James Smith",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "license": "MIT",
-  "homepage": "https://github.com/djalbat/Jiggles",
+  "homepage": "https://github.com/djalbat/jiggles",
   "description": "Image compositing for Jiggle.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/djalbat/Jiggles"
+    "url": "https://github.com/djalbat/jiggles"
   },
   "dependencies": {
     "sharp": "^0.18.4",

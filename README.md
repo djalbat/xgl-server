@@ -10,7 +10,7 @@ Jiggles runs on the server and not in the browser, the reason being that it depe
 
 You can clone the repository with [Git](https://git-scm.com/)...
 
-    git clone https://github.com/djalbat/Jiggles.git
+    git clone https://github.com/djalbat/jiggles.git
 
 ...and then install the necessary modules with [npm](https://www.npmjs.com/) from within the project's root directory:
 

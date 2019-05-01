@@ -28,7 +28,7 @@ const { imageMapPNG, imageMapJSON };
 
 ...
 ```
-It is recommended that you familiarise yourself with the example application before attempting to make use of these functions.
+It is recommended that you familiarise yourself with the example application before attempting to make use of the above.
 
 ## The example application
 

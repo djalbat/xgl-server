@@ -36,7 +36,7 @@ There is a small Node.js application which can be run from the root of the repos
 
     node ./bin/main.js
 
-This provides two endpoints. The `http://localhost:8000/imageMap` endpoint will serve the example image map whilst the `http://localhost:8000/` endpoint serves a blank HTML file with the corresponding JSON representation embedded within it. Four example images of differing formats can be found in the `image` directory (for technical reasons they are referred to as images rather than textures from now on). You can specify which images make up the image map with a suitable query string for both endpoints. For example:
+This provides two endpoints. The [http://localhost:8000/imageMap] endpoint will serve the example image map whilst the [http://localhost:8000/] endpoint serves a blank HTML file with the corresponding JSON representation embedded within it. Four example images of differing formats can be found in the `image` directory (for technical reasons they are referred to as images rather than textures from now on). You can specify which images make up the image map with a suitable query string for both endpoints. For example:
 
 * `http://localhost:8000/imageMap?names=blue.jpg,green.png,red.jpg`
 
@@ -52,14 +52,32 @@ Two routes have been set up in the [main.js](https://github.com/djalbat/Jiggles/
   <body>
     <script>
 
-      var imageMapJSON = ${imageMapJSON};
+      window.__configuration__ = {
+        imageMapJSON: ${imageMapJSON}
+      };
 
     </script>
   </body>
 </html>
 ```
 
-Embedding the image map JSON within the HTML in this way will make it available as a property of the `window` object to any JavaScript running in the browser. If you think this approach is questionable, you could add a route to provide the JSON by way of an Ajax request.
+Embedding the image map JSON within the HTML in this way will make it available to any JavaScript running in the browser. The following `configuration.js` file is suggested:
+
+```js
+module.exports = window.configuration; ///
+```
+
+Now you can get hold of the image map JSON thus:
+
+```js
+const configuration = require('./configuration');
+
+const { imageMapJSON } = configuration;
+
+...
+```
+
+If you think this approach is questionable, you could add a route to provide the JSON by way of an Ajax request.
 
 Finally, the signatures of the two main functions that Jiggles provides:
 

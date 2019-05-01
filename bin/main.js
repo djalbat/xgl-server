@@ -16,13 +16,11 @@ rc(argv);
 
 const server = express(), ///
       router = express.Router(),
-      { port } = rc,
-      imageMapURI = IMAGE_MAP_URI,
-      indexPageURI = INDEX_PAGE_URI;
+      { port } = rc;
 
-router.get(imageMapURI, imageMap);
+router.get(IMAGE_MAP_URI, imageMap);
 
-router.get(indexPageURI, indexPage);
+router.get(INDEX_PAGE_URI, indexPage);
 
 server.use(router);
 

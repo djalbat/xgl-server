@@ -4,7 +4,7 @@ Image compositing for [Jiggle](https://github.com/djalbat/Jiggle).
 
 Since [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) supports texture mapping, so does Jiggle. A drawback of WebGL, however, is that it only allows six textures per shader. One way around this problem is to use multiple shaders, but this can become cumbersome. A better solution is to use image compositing, essentially tiling several textures to produce an image map. This is what Jiggles does, as well as providing a corresponding JSON representation of the image map that can be used to configure Jiggle's shaders to extract specific textures.
 
-Because Jiggles depends on [Sharp](http://sharp.pixelplumbing.com/), it runs on the server and not in the browser. So the best way to make image maps and their corresponding JSON representations available to Jiggle applications running in a browser is by way of a small NodeJS application implementing endpoints for each. This repository includes an example application that does just this, and an explanation of it is given below.
+Because Jiggles depends on [Sharp](http://sharp.pixelplumbing.com/), it runs on the server and not in the browser. So the best way to make image maps and their corresponding JSON representations available to Jiggle applications running in a browser is by way of a small NodeJS application implementing endpoints for each. This repository includes an example application that does just that, and an explanation is given below.
 
 ## Installation
 
@@ -22,12 +22,13 @@ You will need to do this if you want to look at the example.
 
 Two functions are exported:
 ```js
-const jiggles = require('jiggles'),
-      { imageMapPNG, imageMapJSON };
+const jiggles = require('jiggles');
+
+const { imageMapPNG, imageMapJSON };
 
 ...
 ```
-As already mentioned, it is recommended that you familiarise yourself with the example application before attempting to make use of these functions yourself.
+It is recommended that you familiarise yourself with the example application before attempting to make use of these functions.
 
 ## The example application
 

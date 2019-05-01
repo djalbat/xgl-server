@@ -64,7 +64,7 @@ Two routes have been set up in the [main.js](https://github.com/djalbat/Jiggles/
 Embedding the image map JSON within the HTML in this way will make it available to any JavaScript running in the browser. The following `configuration.js` file is suggested:
 
 ```js
-module.exports = window.configuration; ///
+module.exports = window.__configuration__; ///
 ```
 
 Now you can get hold of the image map JSON thus:

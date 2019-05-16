@@ -9,7 +9,7 @@ const { templateUtilities, miscellaneousUtilities } = necessary,
       { rc } = miscellaneousUtilities,
       { parseFile } = templateUtilities,
       { imageMapPNG, imageMapJSON } = jiggles,
-      { OVERLAY_IMAGE_SIZE, INDEX_PAGE_FILE_PATH } = constants;
+      { IMAGE_MAP_URI, OVERLAY_IMAGE_SIZE, INDEX_PAGE_FILE_PATH } = constants;
 
 function imageMap(request, response) {
 	const { imageDirectoryPath } = rc,
@@ -28,8 +28,10 @@ function indexPage(request, response) {
 	imageMapJSON(names, imageDirectoryPath, overlayImageSize, function (imageMapJSON) {
 		imageMapJSON = JSON.stringify(imageMapJSON, null, '\t'); ///
 
-		const filePath = `${templateDirectoryPath}${indexPageFilePath}`,
+		const imageMapURI = IMAGE_MAP_URI,
+          filePath = `${templateDirectoryPath}${indexPageFilePath}`,
 					args = {
+            imageMapURI,
 						imageMapJSON
 					},
 					html = parseFile(filePath, args);

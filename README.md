@@ -4,7 +4,7 @@ Image compositing for [Jiggle](https://github.com/djalbat/Jiggle).
 
 Since [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) supports texture mapping, so does Jiggle. A drawback of WebGL, however, is that it only allows six textures per shader. One way around this problem is to use multiple shaders, but this can become cumbersome. A better solution is to use image compositing, essentially tiling several textures to produce an image map. This is what Jiggles does, as well as providing a corresponding JSON representation of the image map that can be used to configure Jiggle's shaders to extract specific textures.
 
-Because Jiggles depends on [Sharp](http://sharp.pixelplumbing.com/), it runs on the server and not in the browser. So the best way to make image maps and their corresponding JSON representations available to Jiggle applications running in a browser is by way of a small NodeJS application implementing endpoints for each. This repository includes an example application that does just that, and an explanation is given below.
+Because Jiggles depends on [Sharp](http://sharp.pixelplumbing.com/), it runs on the server and not in the browser. So the best way to make image maps and their corresponding JSON representations available to Jiggle applications running in a browser is by way of a small [Express](https://expressjs.com/) application implementing endpoints for each. This repository includes an example application that does just that, and an explanation is given below.
 
 ## Installation
 
@@ -30,7 +30,7 @@ const { imageMapPNG, imageMapJSON };
 ```
 It is recommended that you familiarise yourself with the example application before attempting to make use of the above.
 
-## The example application
+## Tutorial
 
 There is a small Node.js application which can be run from the root of the repository:
 
@@ -53,6 +53,7 @@ Two routes have been set up in the [main.js](https://github.com/djalbat/Jiggles/
     <script>
 
       window.__configuration__ = {
+        imageMapuri: ${imageMapuri},
         imageMapJSON: ${imageMapJSON}
       };
 
@@ -67,12 +68,12 @@ Embedding the image map JSON within the HTML in this way will make it available 
 module.exports = window.__configuration__; ///
 ```
 
-Now you can get hold of the image map JSON thus:
+Now you can get hold of BOTH the image map URI and JSON thus:
 
 ```js
 const configuration = require('./configuration');
 
-const { imageMapJSON } = configuration;
+const { imageMapURI, imageMapJSON } = configuration;
 
 ...
 ```
@@ -91,6 +92,8 @@ function imageMapJSON(names, imageDirectoryPath, overlayImageSize, callback) {
 }
 ```
 Note that the `imageMapPNG(...)` function pipes the image directly to a `response` object rather than returning it via a callback.
+
+For further explanation, see the tutorial in the Jiggle readme.
 
 ## Compiling from source
 

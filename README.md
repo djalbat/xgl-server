@@ -1,16 +1,16 @@
-# Jiggles
+# XGL Server
 
-Image compositing for [Jiggle](https://github.com/djalbat/Jiggle).
+Image compositing for [XGL](https://github.com/djalbat/xgl).
 
-Since [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) supports texture mapping, so does Jiggle. A drawback of WebGL, however, is that it only allows six textures per shader. One way around this problem is to use multiple shaders, but this can become cumbersome. A better solution is to use image compositing, essentially tiling several textures to produce an image map. This is what Jiggles does, as well as providing a corresponding JSON representation of the image map that can be used to configure Jiggle's shaders to extract specific textures.
+Since [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) supports texture mapping, so does XGL. A drawback of WebGL, however, is that it only allows six textures per shader. One way around this problem is to use multiple shaders, but this can become cumbersome. A better solution is to use image compositing, essentially tiling several textures to produce an image map. This is what XGL Server does, as well as providing a corresponding JSON representation of the image map that can be used to configure XGL's shaders to extract specific textures.
 
-Because Jiggles depends on [Sharp](http://sharp.pixelplumbing.com/), it runs on the server and not in the browser. So the best way to make image maps and their corresponding JSON representations available to Jiggle applications running in a browser is by way of a small [Express](https://expressjs.com/) application implementing endpoints for each. This repository includes an example application that does just that, and an explanation is given below.
+Because XGL Server depends on [Sharp](http://sharp.pixelplumbing.com/), it runs on the server and not in the browser. So the best way to make image maps and their corresponding JSON representations available to XGL applications running in a browser is by way of a small [Express](https://expressjs.com/) application implementing endpoints for each. This repository includes an example application that does just that, and an explanation is given below.
 
 ## Installation
 
 You can clone the repository with [Git](https://git-scm.com/)...
 
-    git clone https://github.com/djalbat/jiggles.git
+    git clone https://github.com/djalbat/xgl-server.git
 
 ...and then install the necessary modules with [npm](https://www.npmjs.com/) from within the project's root directory:
 
@@ -22,7 +22,7 @@ You will need to do this if you want to look at the example.
 
 Two functions are exported:
 ```js
-const jiggles = require('jiggles');
+const xglserver = require('xgl-server');
 
 const { imageMapPNG, imageMapJSON };
 
@@ -42,7 +42,7 @@ This provides two endpoints. The http://localhost:8000/imageMap endpoint will se
 
 If you do not specify any names, all of the images will be used.
 
-Two routes have been set up in the [main.js](https://github.com/djalbat/Jiggles/blob/master/bin/main.js) and [routes.js](https://github.com/djalbat/Jiggles/blob/master/bin/routes.js) files in order to provide the aforementioned endpoints, and each makes use of one of the two main functions provided by Jiggles. The blank HTML file is in turn generated from a template HTML file in the repository's `template` directory:
+Two routes have been set up in the [main.js](https://github.com/djalbat/XGL Server/blob/master/bin/main.js) and [routes.js](https://github.com/djalbat/XGL Server/blob/master/bin/routes.js) files in order to provide the aforementioned endpoints, and each makes use of one of the two main functions provided by XGL Server. The blank HTML file is in turn generated from a template HTML file in the repository's `template` directory:
 
 ```html
 <!DOCTYPE html>
@@ -80,7 +80,7 @@ const { imageMapURI, imageMapJSON } = configuration;
 
 If you think this approach is questionable, you could add a route to provide the JSON by way of an Ajax request.
 
-Finally, the signatures of the two main functions that Jiggles provides:
+Finally, the signatures of the two main functions that XGL Server provides:
 
 ```
 function imageMapPNG(names, imageDirectoryPath, overlayImageSize, response) {
@@ -93,7 +93,7 @@ function imageMapJSON(names, imageDirectoryPath, overlayImageSize, callback) {
 ```
 Note that the `imageMapPNG(...)` function pipes the image directly to a `response` object rather than returning it via a callback.
 
-For further explanation, see the tutorial in the Jiggle readme.
+For further explanation, see the tutorial in the XGL readme.
 
 ## Compiling from source
 

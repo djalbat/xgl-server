@@ -1,13 +1,13 @@
 {
-  "name": "jiggles",
+  "name": "xgl-server",
   "author": "James Smith",
-  "version": "0.0.29",
+  "version": "0.0.1",
   "license": "MIT",
-  "homepage": "https://github.com/djalbat/jiggles",
-  "description": "Image compositing for Jiggle.",
+  "homepage": "https://github.com/djalbat/xgl-server",
+  "description": "Image compositing for XGL.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/djalbat/jiggles"
+    "url": "https://github.com/djalbat/xgl-server"
   },
   "dependencies": {
     "sharp": "^0.18.4",

@@ -42,7 +42,7 @@ This provides two endpoints. The http://localhost:8000/imageMap endpoint will se
 
 If you do not specify any names, all of the images will be used.
 
-Two routes have been set up in the [main.js](https://github.com/djalbat/XGL Server/blob/master/bin/main.js) and [routes.js](https://github.com/djalbat/XGL Server/blob/master/bin/routes.js) files in order to provide the aforementioned endpoints, and each makes use of one of the two main functions provided by XGL Server. The blank HTML file is in turn generated from a template HTML file in the repository's `template` directory:
+Two routes have been set up in the [main.js](https://github.com/djalbat/xgl-server/blob/master/bin/main.js) and [routes.js](https://github.com/djalbat/xgl-server/blob/master/bin/routes.js) files in order to provide the aforementioned endpoints, and each makes use of one of the two main functions provided by XGL Server. The blank HTML file is in turn generated from a template HTML file in the repository's `template` directory:
 
 ```html
 <!DOCTYPE html>
@@ -68,7 +68,7 @@ Embedding the image map JSON within the HTML in this way will make it available 
 module.exports = window.__configuration__; ///
 ```
 
-Now you can get hold of BOTH the image map URI and JSON thus:
+Now you can get hold of both the image map URI and JSON thus:
 
 ```js
 const configuration = require('./configuration');

@@ -18,17 +18,17 @@ function imageMapJSON(names, imageDirectoryPath, overlayImageSize, callback) {
 	names = removeHiddenNames(names);
 
 	const dimension = dimensionFromNames(names),
-				size = dimension * overlayImageSize,
+				length = dimension * overlayImageSize,
 				imageMapJSON = names.reduce(function(imageMapJSON, name, index) {
           let left = (index % dimension) / dimension,
 							bottom = Math.floor(index / dimension) / dimension,
 							width = 1 / dimension,
 							height = 1 / dimension;
 
-          left = ((left * size) + 1) / size;
-					bottom = ((bottom * size) + 1) / size;
-					width = ((width * size) - 1) / size;
-					height = ((height * size) - 1) / size;
+          left = ((left * length) + 0.5) / length;
+					bottom = ((bottom * length) + 0.5) / length;
+					width = ((width * length) - 0.5) / length;
+					height = ((height * length) - 0.5) / length;
 
           imageMapJSON[name] = {
             left,

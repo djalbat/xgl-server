@@ -23,12 +23,13 @@ function imageMapJSON(names, imageDirectoryPath, overlayImageSize, callback) {
           let left = (index % dimension) / dimension,
 							bottom = Math.floor(index / dimension) / dimension,
 							width = 1 / dimension,
-							height = 1 / dimension;
+							height = 1 / dimension,
+              offset = 1; ///
 
-          left = ((left * length) + 0.5) / length;
-					bottom = ((bottom * length) + 0.5) / length;
-					width = ((width * length) - 0.5) / length;
-					height = ((height * length) - 0.5) / length;
+          left = ((left * length) + offset) / length;
+					bottom = ((bottom * length) + offset) / length;
+					width = ((width * length) - offset) / length;
+					height = ((height * length) - offset) / length;
 
           imageMapJSON[name] = {
             left,

@@ -104,7 +104,7 @@ Automation is done with [npm scripts](https://docs.npmjs.com/misc/scripts), have
     
 ## Acknowledgements
 
-* This online tool, https://www.imgonline.com.ua/eng/make-seamless-texture.php, has been invaluable to the author.
+* This online tool, https://www.imgonline.com.ua/eng/make-seamless-texture.php, has been very useful to the author.
 
 ## Contact
 

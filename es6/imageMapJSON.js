@@ -27,8 +27,8 @@ function imageMapJSON(names, imageDirectoryPath, overlayImageSize, callback) {
 
           left = ((left * size) + 0.5) / size;
 					bottom = ((bottom * size) + 0.5) / size;
-					width = ((width * size) - 1.0) / size;
-					height = ((height * size) - 1.0) / size;
+					width = ((width * size) - 0.5) / size;
+					height = ((height * size) - 0.5) / size;
 
           imageMapJSON[name] = {
             left,

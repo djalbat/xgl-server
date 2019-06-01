@@ -102,6 +102,10 @@ Automation is done with [npm scripts](https://docs.npmjs.com/misc/scripts), have
     npm run build-debug
     npm run watch-debug
     
+## Acknowledgements
+
+* This online tool, https://www.imgonline.com.ua/eng/make-seamless-texture.php, has been invaluable to the author.
+
 ## Contact
 
 - james.smith@djalbat.com

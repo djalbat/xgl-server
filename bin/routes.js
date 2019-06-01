@@ -12,16 +12,16 @@ const { templateUtilities, miscellaneousUtilities } = necessary,
       { IMAGE_MAP_URI, OVERLAY_IMAGE_SIZE, INDEX_PAGE_FILE_PATH } = constants;
 
 function imageMap(request, response) {
-	const { imageDirectoryPath } = rc,
-				names = namesFromRequest(request),
+	const names = namesFromRequest(request),
+        { imageDirectoryPath } = rc,
 				overlayImageSize = OVERLAY_IMAGE_SIZE;
 
 	imageMapPNG(names, imageDirectoryPath, overlayImageSize, response);
 }
 
 function indexPage(request, response) {
-	const { imageDirectoryPath, templateDirectoryPath } = rc,
-				names = namesFromRequest(request),
+	const names = namesFromRequest(request),
+        { imageDirectoryPath, templateDirectoryPath } = rc,
 				indexPageFilePath = INDEX_PAGE_FILE_PATH,
 				overlayImageSize = OVERLAY_IMAGE_SIZE;
 

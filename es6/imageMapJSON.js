@@ -24,7 +24,7 @@ function imageMapJSON(names, imageDirectoryPath, overlayImageSize, callback) {
 							bottom = Math.floor(index / dimension) / dimension,
 							width = 1 / dimension,
 							height = 1 / dimension,
-              offset = 1; ///
+              offset = 0.5; ///
 
           left = ((left * length) + offset) / length; ///
 					bottom = ((bottom * length) + offset) / length; ///

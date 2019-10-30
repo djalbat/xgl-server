@@ -8,9 +8,9 @@ const routes = require('./routes'),
 
 const { miscellaneousUtilities } = necessary,
       { onETX, rc } = miscellaneousUtilities,
-			{ argv, exit } = process,
-			{ imageMap, indexPage } = routes,
-			{ IMAGE_MAP_URI, INDEX_PAGE_URI } = constants;
+      { argv, exit } = process,
+      { imageMap, indexPage } = routes,
+      { IMAGE_MAP_URI, INDEX_PAGE_URI } = constants;
 
 rc(argv);
 

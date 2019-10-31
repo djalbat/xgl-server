@@ -4,26 +4,26 @@ const sharp = require('sharp'),
       necessary = require('necessary');
 
 const constants = require('./constants'),
-			namesUtilities = require('./utilities/names');
+      namesUtilities = require('./utilities/names');
 
 const { asynchronousUtilities, fileSystemUtilities } = necessary,
       { whilst } = asynchronousUtilities,
       { readDirectory } = fileSystemUtilities,
       { removeHiddenNames, dimensionFromNames } = namesUtilities,
-			{ RED, BLUE, GREEN, ALPHA, CHANNELS } = constants;
+      { RED, BLUE, GREEN, ALPHA, CHANNELS } = constants;
 
 function imageMapPNG(names, imageDirectoryPath, overlayImageSize, response) {
-	const namesLength = names.length;
+  const namesLength = names.length;
 
-	if (namesLength === 0) {
-		names = readDirectory(imageDirectoryPath);
-	}
+  if (namesLength === 0) {
+    names = readDirectory(imageDirectoryPath);
+  }
 
-	names = removeHiddenNames(names);
+  names = removeHiddenNames(names);
 
-	const dimension = dimensionFromNames(names);
+  const dimension = dimensionFromNames(names);
 
-	createImageMap(dimension, overlayImageSize, function(imageBuffer) {
+  createImageMap(dimension, overlayImageSize, function(imageBuffer) {
     const context = {
       names,
       dimension,
@@ -31,7 +31,7 @@ function imageMapPNG(names, imageDirectoryPath, overlayImageSize, response) {
       overlayImageSize,
       imageDirectoryPath
     };
-    
+
     whilst(overlayCallback, function() {
       response.writeHead(200, {'Content-Type': 'image/png; charset=utf-8'});
 
@@ -46,18 +46,18 @@ module.exports = imageMapPNG;
 
 function createImageMap(dimension, overlayImageSize, callback) {
   const size = dimension * overlayImageSize,
-				width = size,	///
+        width = size,	///
         height = size,	///
-			  alpha = ALPHA,
+        alpha = ALPHA,
         channels = CHANNELS,
-			  r = RED,	///
-			  g = GREEN,	///
-			  b = BLUE,	///
+        r = RED,	///
+        g = GREEN,	///
+        b = BLUE,	///
         background = {
-  	      r,
-	        g,
-	        b,
-	        alpha
+          r,
+          g,
+          b,
+          alpha
         },
         options = {
           width,
@@ -65,7 +65,7 @@ function createImageMap(dimension, overlayImageSize, callback) {
           channels,
           background
         },
-			  create = options, ///
+        create = options, ///
         imageMap = sharp({
           create
         });
@@ -76,7 +76,7 @@ function createImageMap(dimension, overlayImageSize, callback) {
     .then(function(imageBuffer) {
       callback(imageBuffer)
     });
-}
+  }
 
 function overlayCallback(next, done, context, index) {
   const { names, dimension, imageBuffer, overlayImageSize, imageDirectoryPath } = context,
@@ -85,10 +85,10 @@ function overlayCallback(next, done, context, index) {
 
   if (index > lastIndex) {
     done();
-    
+
     return;
   }
-  
+
   const name = names[index],
         path = `${imageDirectoryPath}/${name}`;
 
@@ -105,18 +105,18 @@ function overlayCallback(next, done, context, index) {
       .toBuffer()
       .then(function(imageBuffer) {
         Object.assign(context, {
-          imageBuffer
-        });
-
-        next();
+        imageBuffer
       });
+
+    next();
+    });
   });
 }
 
 function resizeImage(path, overlayImageSize, callback) {
   const width = overlayImageSize, ///
         height = overlayImageSize;  ///
-  
+
   sharp(path)
     .resize(width, height)
     .toBuffer()

@@ -32,7 +32,7 @@ function imageMapPNG(names, imageDirectoryPath, overlayImageSize, response) {
       imageDirectoryPath
     };
 
-    whilst(overlayCallback, function() {
+    whilst(compositeCallback, function() {
       response.writeHead(200, {'Content-Type': 'image/png; charset=utf-8'});
 
       const { imageBuffer } = context;
@@ -78,7 +78,7 @@ function createImageMap(dimension, overlayImageSize, callback) {
     });
   }
 
-function overlayCallback(next, done, context, index) {
+function compositeCallback(next, done, context, index) {
   const { names, dimension, imageBuffer, overlayImageSize, imageDirectoryPath } = context,
         namesLength = names.length,
         lastIndex = namesLength - 1;
@@ -95,22 +95,24 @@ function overlayCallback(next, done, context, index) {
   resizeImage(path, overlayImageSize, function(resizedImageBuffer) {
     const top = ((dimension - 1) - Math.floor(index / dimension)) * overlayImageSize,
           left = (index % dimension) * overlayImageSize,
+          input = resizedImageBuffer, ///
           options = {
             top,
-            left
+            left,
+            input
           };
 
     sharp(imageBuffer)
-      .overlayWith(resizedImageBuffer, options)
+      .composite([options]) ///
       .toBuffer()
       .then(function(imageBuffer) {
         Object.assign(context, {
-        imageBuffer
-      });
+          imageBuffer
+        });
 
-    next();
+        next();
+      });
     });
-  });
 }
 
 function resizeImage(path, overlayImageSize, callback) {

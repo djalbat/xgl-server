@@ -34,7 +34,7 @@ It is recommended that you familiarise yourself with the example application bef
 
 There is a small Node.js application which can be run from the root of the repository:
 
-    node ./bin/main.js
+    node ./bin/example/main.js
 
 This provides two endpoints. The http://localhost:8000/imageMap endpoint will serve the example image map whilst the http://localhost:8000/ endpoint serves a blank HTML file with the corresponding JSON representation embedded within it. Four example images of differing formats can be found in the `image` directory (for technical reasons they are referred to as images rather than textures from now on). You can specify which images make up the image map with a suitable query string for both endpoints. For example:
 

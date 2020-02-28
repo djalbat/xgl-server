@@ -1,13 +1,15 @@
 'use strict';
 
-const IMAGE_MAP_URI = '/imageMap',
-      INDEX_PAGE_URI = '/',
-      OVERLAY_IMAGE_SIZE = 128,
-      INDEX_PAGE_FILE_PATH = '/index.html';
+const RED = 0,
+      BLUE = 0,
+      GREEN = 0,
+      ALPHA = 0,
+      CHANNELS = 4;
 
 module.exports = {
-  IMAGE_MAP_URI,
-  INDEX_PAGE_URI,
-  OVERLAY_IMAGE_SIZE,
-  INDEX_PAGE_FILE_PATH
+  RED,
+  BLUE,
+  GREEN,
+  ALPHA,
+  CHANNELS
 };

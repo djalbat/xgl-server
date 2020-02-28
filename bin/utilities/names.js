@@ -1,17 +1,17 @@
 'use strict';
 
 function removeHiddenNames(names) {
-	names = names.reduce(function(names, name) {
-		const nameHiddenName = /^\./.test(name);
+  names = names.reduce(function(names, name) {
+    const nameHiddenName = /^\./.test(name);
 
-		if (!nameHiddenName) {
-			names.push(name);
-		}
+    if (!nameHiddenName) {
+      names.push(name);
+    }
 
-		return names;
-	}, []);
+    return names;
+  }, []);
 
-	return names;
+  return names;
 }
 
 function dimensionFromNames(names) {
@@ -22,6 +22,6 @@ function dimensionFromNames(names) {
 }
 
 module.exports = {
-	removeHiddenNames,
+  removeHiddenNames,
   dimensionFromNames
 };

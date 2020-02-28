@@ -1,6 +1,6 @@
 'use strict';
 
-const xglserver = require('../index'), ///
+const xglserver = require('../../index'), ///
       necessary = require('necessary');
 
 const constants = require('./constants');

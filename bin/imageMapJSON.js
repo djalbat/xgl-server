@@ -9,27 +9,27 @@ const { fileSystemUtilities } = necessary,
       { removeHiddenNames, dimensionFromNames } = namesUtilities;
 
 function imageMapJSON(names, imageDirectoryPath, overlayImageSize, callback) {
-	const namesLength = names.length;
+  const namesLength = names.length;
 
-	if (namesLength === 0) {
-		names = readDirectory(imageDirectoryPath);
-	}
+  if (namesLength === 0) {
+    names = readDirectory(imageDirectoryPath);
+  }
 
-	names = removeHiddenNames(names);
+  names = removeHiddenNames(names);
 
-	const dimension = dimensionFromNames(names),
-				length = dimension * overlayImageSize,
-				imageMapJSON = names.reduce(function(imageMapJSON, name, index) {
+  const dimension = dimensionFromNames(names),
+        length = dimension * overlayImageSize,
+        imageMapJSON = names.reduce(function(imageMapJSON, name, index) {
           let left = (index % dimension) / dimension,
-							bottom = Math.floor(index / dimension) / dimension,
-							width = 1 / dimension,
-							height = 1 / dimension,
+              bottom = Math.floor(index / dimension) / dimension,
+              width = 1 / dimension,
+              height = 1 / dimension,
               offset = 0.5; ///
 
           left = ((left * length) + offset) / length; ///
-					bottom = ((bottom * length) + offset) / length; ///
-					width = ((width * length) - offset) / length; ///
-					height = ((height * length) - offset) / length; ///
+          bottom = ((bottom * length) + offset) / length; ///
+          width = ((width * length) - offset) / length; ///
+          height = ((height * length) - offset) / length; ///
 
           imageMapJSON[name] = {
             left,

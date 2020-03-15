@@ -20,7 +20,6 @@ You will need to do this if you want to look at the example.
 
 ## Usage
 
-Two functions are exported:
 ```js
 const xglserver = require('xgl-server');
 
@@ -28,7 +27,7 @@ const { imageMapPNG, imageMapJSON };
 
 ...
 ```
-It is recommended that you familiarise yourself with the example application before attempting to make use of the above.
+Only these two functions are exported. It is recommended that you familiarise yourself with the example application before attempting to make use of them.
 
 ## Tutorial
 

@@ -94,13 +94,6 @@ Note that the `imageMapPNG(...)` function pipes the image directly to a `respons
 
 For further explanation, see the tutorial in the XGL readme.
 
-## Compiling from source
-
-Automation is done with [npm scripts](https://docs.npmjs.com/misc/scripts), have a look at the `package.json` file. The pertinent commands are:
-
-    npm run build-debug
-    npm run watch-debug
-    
 ## Contact
 
 - james.smith@djalbat.com

@@ -20,10 +20,10 @@ You will need to do this if you want to look at the example.
 
 ## Usage
 
-```js
-const xglserver = require('xgl-server');
+```
+const xglServer = require('xgl-server');
 
-const { imageMapPNG, imageMapJSON };
+const { imageMapPNG, imageMapJSON } = xglServer;
 
 ...
 ```
@@ -43,7 +43,7 @@ If you do not specify any names, all of the images will be used.
 
 Two routes have been set up in the [main.js](https://github.com/djalbat/xgl-server/blob/master/bin/main.js) and [routes.js](https://github.com/djalbat/xgl-server/blob/master/bin/routes.js) files in order to provide the aforementioned endpoints, and each makes use of one of the two main functions provided by XGL Server. The blank HTML file is in turn generated from a template HTML file in the repository's `template` directory:
 
-```html
+```
 <!DOCTYPE html>
 <html>
   <head>
@@ -63,13 +63,13 @@ Two routes have been set up in the [main.js](https://github.com/djalbat/xgl-serv
 
 Embedding the image map JSON within the HTML in this way will make it available to any JavaScript running in the browser. The following `configuration.js` file is suggested:
 
-```js
+```
 module.exports = window.__configuration__; ///
 ```
 
 Now you can get hold of both the image map URI and JSON thus:
 
-```js
+```
 const configuration = require('./configuration');
 
 const { imageMapURI, imageMapJSON } = configuration;

@@ -1,6 +1,6 @@
 "use strict";
 
-const xglserver = require("../../index"), ///
+const xglServer = require("../../index"), ///
       necessary = require("necessary");
 
 const constants = require("./constants");
@@ -8,8 +8,8 @@ const constants = require("./constants");
 const { templateUtilities, miscellaneousUtilities } = necessary,
       { rc } = miscellaneousUtilities,
       { parseFile } = templateUtilities,
-      { imageMapPNG, imageMapJSON } = xglserver,
-      { IMAGE_MAP_URI, OVERLAY_IMAGE_SIZE, INDEX_PAGE_FILE_PATH } = constants;
+      { imageMapPNG, imageMapJSON } = xglServer,
+      { IMAGE_MAP_URI, OVERLAY_IMAGE_SIZE, INDEX_PAGE_FILE_PATH, TEXT_HTML_CHARSET_UTF8_CONTENT_TYPE } = constants;
 
 function imageMap(request, response) {
   const names = namesFromRequest(request),
@@ -26,7 +26,7 @@ function indexPage(request, response) {
         overlayImageSize = OVERLAY_IMAGE_SIZE;
 
   imageMapJSON(names, imageDirectoryPath, overlayImageSize, function (imageMapJSON) {
-    imageMapJSON = JSON.stringify(imageMapJSON, null, "\t""); ///
+    imageMapJSON = JSON.stringify(imageMapJSON, null, "  ");
 
     const imageMapURI = IMAGE_MAP_URI,
           filePath = `${templateDirectoryPath}${indexPageFilePath}`,
@@ -34,9 +34,10 @@ function indexPage(request, response) {
             imageMapURI,
             imageMapJSON
           },
+          contentType = TEXT_HTML_CHARSET_UTF8_CONTENT_TYPE,
           html = parseFile(filePath, args);
 
-    response.writeHead(200, {"Content-Type": "text/html; charset=utf-8"});
+    response.writeHead(200, {"Content-Type": contentType});
 
     response.end(html);
   });

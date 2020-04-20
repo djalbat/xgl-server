@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-const xglserver = require('../../index'), ///
-      necessary = require('necessary');
+const xglserver = require("../../index"), ///
+      necessary = require("necessary");
 
-const constants = require('./constants');
+const constants = require("./constants");
 
 const { templateUtilities, miscellaneousUtilities } = necessary,
       { rc } = miscellaneousUtilities,
@@ -26,7 +26,7 @@ function indexPage(request, response) {
         overlayImageSize = OVERLAY_IMAGE_SIZE;
 
   imageMapJSON(names, imageDirectoryPath, overlayImageSize, function (imageMapJSON) {
-    imageMapJSON = JSON.stringify(imageMapJSON, null, '\t'); ///
+    imageMapJSON = JSON.stringify(imageMapJSON, null, "\t""); ///
 
     const imageMapURI = IMAGE_MAP_URI,
           filePath = `${templateDirectoryPath}${indexPageFilePath}`,
@@ -36,7 +36,7 @@ function indexPage(request, response) {
           },
           html = parseFile(filePath, args);
 
-    response.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+    response.writeHead(200, {"Content-Type": "text/html; charset=utf-8"});
 
     response.end(html);
   });
@@ -53,7 +53,7 @@ function namesFromRequest(request) {
   let { names } = query;
 
   names = names ? ////
-            names.split(',') :
+            names.split(",") :
               [];
 
   return names;

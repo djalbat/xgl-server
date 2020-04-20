@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "express": "^4.15.4",
-    "necessary": "^2.5.0",
+    "necessary": "^4.1.6",
     "sharp": "^0.23.2"
   },
   "devDependencies": {},

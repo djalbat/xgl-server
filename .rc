@@ -2,9 +2,7 @@
   "environments": [
     {
       "name": "development",
-      "port": 8000,
-      "imageDirectoryPath": "image",
-      "templateDirectoryPath": "template"
+      "port": 8000
     }
   ]
 }

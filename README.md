@@ -29,7 +29,7 @@ const { imageMapPNG, imageMapJSON } = xglServer;
 ```
 Only these two functions are exported. It is recommended that you familiarise yourself with the example application before attempting to make use of them.
 
-## Tutorial
+## Usage
 
 There is a small Node.js application which can be run from the root of the repository:
 
@@ -102,7 +102,7 @@ function imageMapJSON(names, imageDirectoryPath, overlayImageSize, callback) {
 ```
 Note that the `imageMapPNG(...)` function pipes the image directly to a `response` object rather than returning it via a callback.
 
-For further explanation, see the tutorial in the XGL readme.
+For further explanation, see the usage section in the XGL readme.
 
 ## Contact
 

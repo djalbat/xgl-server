@@ -107,4 +107,3 @@ For further explanation, see the usage section in the XGL readme.
 ## Contact
 
 - james.smith@djalbat.com
-- http://djalbat.com

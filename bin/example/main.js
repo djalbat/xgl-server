@@ -1,22 +1,12 @@
 "use strict";
 
-const express = require("express"),
-      necessary = require("necessary");
+const express = require("express");
 
-const routes = require("./routes"),
-      constants = require("./constants");
-
-const { miscellaneousUtilities } = necessary,
-      { onETX, rc } = miscellaneousUtilities,
-      { argv, exit } = process,
-      { imageMap, indexPage } = routes,
-      { IMAGE_MAP_URI, INDEX_PAGE_URI } = constants;
-
-rc(argv);
+const { imageMap, indexPage } = require("./routes"),
+      { IMAGE_MAP_URI, INDEX_PAGE_URI } = require("./constants");
 
 const server = express(), ///
-      router = express.Router(),
-      { port } = rc;
+      router = express.Router();
 
 router.get(IMAGE_MAP_URI, imageMap);
 
@@ -24,6 +14,4 @@ router.get(INDEX_PAGE_URI, indexPage);
 
 server.use(router);
 
-server.listen(port);
-
-onETX(exit);
+server.listen(8888);

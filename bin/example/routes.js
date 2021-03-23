@@ -1,14 +1,16 @@
 "use strict";
 
-const xglServer = require("../../index"), ///
-      necessary = require("necessary");
+const { templateUtilities } = require("necessary"),
+      { imageMapPNG, imageMapJSON } = require("../../index"); ///\
 
-const constants = require("./constants");
+const { IMAGE_MAP_URI,
+        OVERLAY_IMAGE_SIZE,
+        INDEX_PAGE_FILE_PATH,
+        IMAGE_DIRECTORY_PATH,
+        TEMPLATE_DIRECTORY_PATH,
+        TEXT_HTML_CHARSET_UTF8_CONTENT_TYPE } = require("./constants");
 
-const { templateUtilities } = necessary,
-      { parseFile } = templateUtilities,
-      { imageMapPNG, imageMapJSON } = xglServer,
-      { IMAGE_MAP_URI, OVERLAY_IMAGE_SIZE, INDEX_PAGE_FILE_PATH, IMAGE_DIRECTORY_PATH, TEMPLATE_DIRECTORY_PATH, TEXT_HTML_CHARSET_UTF8_CONTENT_TYPE } = constants;
+const { parseFile } = templateUtilities;
 
 function imageMap(request, response) {
   const names = namesFromRequest(request),

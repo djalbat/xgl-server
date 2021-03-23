@@ -1,7 +1,7 @@
 "use strict";
 
 const { templateUtilities } = require("necessary"),
-      { imageMapPNG, imageMapJSON } = require("../../index"); ///\
+      { imageMapPNG, imageMapJSON } = require("../../index"); ///
 
 const { IMAGE_MAP_URI,
         OVERLAY_IMAGE_SIZE,

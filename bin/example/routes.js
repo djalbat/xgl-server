@@ -3,8 +3,8 @@
 const { templateUtilities } = require("necessary"),
       { imageMapPNG, imageMapJSON } = require("../../index"); ///
 
-const { IMAGE_MAP_URI,
-        OVERLAY_IMAGE_SIZE,
+const { IMAGE_MAP_PATH } = require("./paths"),
+      { OVERLAY_IMAGE_SIZE,
         INDEX_PAGE_FILE_PATH,
         IMAGE_DIRECTORY_PATH,
         TEMPLATE_DIRECTORY_PATH,
@@ -30,7 +30,7 @@ function indexPage(request, response) {
   imageMapJSON(names, imageDirectoryPath, overlayImageSize, function (imageMapJSON) {
     imageMapJSON = JSON.stringify(imageMapJSON, null, "  ");
 
-    const imageMapURI = IMAGE_MAP_URI,
+    const imageMapURI = IMAGE_MAP_PATH, ///
           filePath = `${templateDirectoryPath}${indexPageFilePath}`,
           args = {
             imageMapURI,

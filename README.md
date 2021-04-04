@@ -37,7 +37,7 @@ There is a small Node.js application which can be run from the root of the repos
 
 This provides two endpoints. This endpoint will serve the example image map...
 
-* http://localhost:8888/imageMap
+* http://localhost:8888/image-map
 
 ...whilst the following endpoint serves a blank HTML file with the corresponding JSON representation embedded within it:
 
@@ -60,7 +60,7 @@ Two routes have been set up in the [main.js](https://github.com/djalbat/xgl-serv
     <script>
 
       window.__configuration__ = {
-        imageMapuri: ${imageMapuri},
+        imageMapURI: ${imageMapURI},
         imageMapJSON: ${imageMapJSON}
       };
 

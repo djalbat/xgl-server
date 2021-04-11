@@ -2,15 +2,15 @@
 
 const express = require("express");
 
-const { imageMap, indexPage } = require("./routes"),
-      { IMAGE_MAP_PATH, INDEX_PAGE_PATH } = require("./paths");
+const { IMAGE_MAP_PATH, INDEX_PAGE_PATH } = require("./paths"),
+      { imageMapHandler, indexPageHandler } = require("./handlers");
 
 const server = express(), ///
       router = express.Router();
 
-router.get(IMAGE_MAP_PATH, imageMap);
+router.get(IMAGE_MAP_PATH, imageMapHandler);
 
-router.get(INDEX_PAGE_PATH, indexPage);
+router.get(INDEX_PAGE_PATH, indexPageHandler);
 
 server.use(router);
 

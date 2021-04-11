@@ -29,8 +29,6 @@ const { imageMapPNG, imageMapJSON } = xglServer;
 ```
 Only these two functions are exported. It is recommended that you familiarise yourself with the example application before attempting to make use of them.
 
-## Usage
-
 There is a small Node.js application which can be run from the root of the repository:
 
     node ./bin/example/main.js
@@ -49,7 +47,7 @@ Four example images of differing formats can be found in the `image` directory (
 
 If you do not specify any names, all of the images will be used.
 
-Two routes have been set up in the [main.js](https://github.com/djalbat/xgl-server/blob/master/bin/main.js) and [routes.js](https://github.com/djalbat/xgl-server/blob/master/bin/routes.js) files in order to provide the aforementioned endpoints, and each makes use of one of the two main functions provided by XGL Server. The blank HTML file is in turn generated from a template HTML file in the repository's `template` directory:
+Two routes have been set up in the [main.js](https://github.com/djalbat/xgl-server/blob/master/bin/main.js) file in order to provide the aforementioned endpoints, and each makes use of one of the two main functions provided by XGL Server. The blank HTML file is in turn generated from a template HTML file in the repository's `template` directory:
 
 ```
 <!DOCTYPE html>

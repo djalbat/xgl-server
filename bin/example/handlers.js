@@ -12,7 +12,7 @@ const { IMAGE_MAP_PATH } = require("./paths"),
 
 const { parseFile } = templateUtilities;
 
-function imageMap(request, response) {
+function imageMapHandler(request, response) {
   const names = namesFromRequest(request),
         overlayImageSize = OVERLAY_IMAGE_SIZE,
         imageDirectoryPath  = IMAGE_DIRECTORY_PATH;
@@ -20,7 +20,7 @@ function imageMap(request, response) {
   imageMapPNG(names, imageDirectoryPath, overlayImageSize, response);
 }
 
-function indexPage(request, response) {
+function indexPageHandler(request, response) {
   const names = namesFromRequest(request),
         overlayImageSize = OVERLAY_IMAGE_SIZE,
         indexPageFilePath = INDEX_PAGE_FILE_PATH,
@@ -46,8 +46,8 @@ function indexPage(request, response) {
 }
 
 module.exports = {
-  imageMap,
-  indexPage
+  imageMapHandler,
+  indexPageHandler
 };
 
 function namesFromRequest(request) {

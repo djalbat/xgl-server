@@ -47,7 +47,7 @@ Four example images of differing formats can be found in the `image` directory (
 
 If you do not specify any names, all of the images will be used.
 
-Two routes have been set up in the [main.js](https://github.com/djalbat/xgl-server/blob/master/bin/main.js) file in order to provide the aforementioned endpoints, and each makes use of one of the two main functions provided by XGL Server. The blank HTML file is in turn generated from a template HTML file in the repository's `template` directory:
+Two routes have been set up in the [main.js](https://github.com/djalbat/xgl-server/blob/master/bin/example.js) file in order to provide the aforementioned endpoints, and each makes use of one of the two main functions provided by XGL Server. The blank HTML file is in turn generated from a template HTML file in the repository's `template` directory:
 
 ```
 <!DOCTYPE html>

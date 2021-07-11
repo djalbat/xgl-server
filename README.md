@@ -2,9 +2,7 @@
 
 Image compositing for [XGL](https://github.com/djalbat/xgl).
 
-Since [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) supports texture mapping, so does XGL. A drawback of WebGL, however, is that it only allows six textures per shader. One way around this problem is to use multiple shaders, but this can become cumbersome. A better solution is to use image compositing, tiling several textures to produce a [texture atlas](https://en.wikipedia.org/wiki/Texture_atlas), or what is called here an image map. This is what XGL Server does, as well as providing a corresponding JSON representation of the image map that can be used to configure XGL's shaders to extract specific textures.
-
-Because XGL Server depends on [Sharp](http://sharp.pixelplumbing.com/), it runs on the server and not in the browser. So the best way to make image maps and their corresponding JSON representations available to XGL applications running in a browser is by way of a small [Express](https://expressjs.com/) application implementing endpoints for each. This repository includes an example application that does just that, and an explanation is given below.
+[WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) supports texture mapping, but a drawback is that it only allows six textures per shader. One way around this problem is to use multiple shaders, but this can become cumbersome. A better solution is to use image compositing, tiling several textures to produce what is called [texture atlas](https://en.wikipedia.org/wiki/Texture_atlas) or image map. This is what XGL Server does, as well as providing a corresponding JSON representation of the image map that can be used to configure XGL's shaders to extract specific textures.
 
 ## Installation
 
@@ -47,7 +45,7 @@ Four example images of differing formats can be found in the `image` directory (
 
 If you do not specify any names, all of the images will be used.
 
-Two routes have been set up in the [main.js](https://github.com/djalbat/xgl-server/blob/master/bin/example.js) file in order to provide the aforementioned endpoints, and each makes use of one of the two main functions provided by XGL Server. The blank HTML file is in turn generated from a template HTML file in the repository's `template` directory:
+Two routes have been set up in order to provide the aforementioned endpoints, and each makes use of one of the two main functions provided by XGL Server. The blank HTML file is in turn generated from a template HTML file in the repository's `template` directory:
 
 ```
 <!DOCTYPE html>

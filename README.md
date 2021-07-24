@@ -98,7 +98,7 @@ function imageMapJSON(names, imageDirectoryPath, overlayImageSize, callback) {
 ```
 Note that the `imageMapPNG(...)` function pipes the image directly to a `response` object rather than returning it via a callback.
 
-For further explanation, see the usage section in the XGL readme.
+For further explanation, see the usage section in the XGL readme file.
 
 ## Contact
 

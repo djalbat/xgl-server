@@ -1,12 +1,14 @@
 "use strict";
 
+const { COMMA } = require("../constants");
+
 function namesFromRequest(request) {
   const { query } = request;
 
   let { names } = query;
 
   names = names ? ////
-            names.split(",") :
+            names.split(COMMA) :
               [];
 
   return names;

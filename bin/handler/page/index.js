@@ -1,20 +1,20 @@
 "use strict";
 
 const { imageMapJSON } = require("../../../index"), ///
-      { templateUtilities } = require("necessary");
+      { headers, contentTypes, statusCodes, templateUtilities } = require("necessary");
 
 const { IMAGE_MAP_PATH } = require("../../paths"),
       { namesFromRequest } = require("../../utilities/request"),
-      { OK_200_STATUS_CODE } = require("../../statusCodes"),
-      { TEXT_HTML_CHARSET_UTF8_CONTENT_TYPE } = require("../../contentTypes"),
       { DOUBLE_SPACE,
-        CONTENT_TYPE,
         OVERLAY_IMAGE_SIZE,
         INDEX_PAGE_FILE_PATH,
         IMAGE_DIRECTORY_PATH,
         TEMPLATE_DIRECTORY_PATH } = require("../../constants");
 
-const { parseFile } = templateUtilities;
+const { parseFile } = templateUtilities,
+      { OK_200_STATUS_CODE } = statusCodes,
+      { CONTENT_TYPE_HEADER } = headers,
+      { TEXT_HTML_CHARSET_UTF8_CONTENT_TYPE } = contentTypes;
 
 function indexPageHandler(request, response) {
   const names = namesFromRequest(request),
@@ -36,7 +36,7 @@ function indexPageHandler(request, response) {
           headers = {},
           statusCode = OK_200_STATUS_CODE;
 
-    headers[CONTENT_TYPE] = TEXT_HTML_CHARSET_UTF8_CONTENT_TYPE;
+    headers[CONTENT_TYPE_HEADER] = TEXT_HTML_CHARSET_UTF8_CONTENT_TYPE;
 
     response.writeHead(statusCode, headers);
 

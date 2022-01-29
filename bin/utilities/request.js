@@ -1,6 +1,8 @@
 "use strict";
 
-const { COMMA } = require("../constants");
+import { charaters } from "necessary";
+
+const { COMMA_CHARACTER } = charaters;
 
 function namesFromRequest(request) {
   const { query } = request;
@@ -8,7 +10,7 @@ function namesFromRequest(request) {
   let { names } = query;
 
   names = names ? ////
-            names.split(COMMA) :
+            names.split(COMMA_CHARACTER) :
               [];
 
   return names;

@@ -1,8 +1,8 @@
 "use strict";
 
-import { charaters } from "necessary";
+const { characters } = require("necessary");
 
-const { COMMA_CHARACTER } = charaters;
+const { COMMA_CHARACTER } = characters;
 
 function namesFromRequest(request) {
   const { query } = request;

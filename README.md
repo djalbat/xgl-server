@@ -41,7 +41,7 @@ This provides two endpoints. This endpoint will serve the example image map...
 
 Four example images of differing formats can be found in the `image` directory (for technical reasons they are referred to as images rather than textures from now on). You can specify which images make up the image map with a suitable query string for both endpoints. For example:
 
-* http://localhost:8888/imageMap?names=blue.jpg,green.png,red.jpg
+* http://localhost:8888/image-map?names=blue.jpg,green.png,red.jpg
 
 If you do not specify any names, all of the images will be used.
 
@@ -55,37 +55,21 @@ Two routes have been set up in order to provide the aforementioned endpoints, an
   <body>
     <script>
 
-      window.__configuration__ = {
-        imageMapURI: ${imageMapURI},
-        imageMapJSON: ${imageMapJSON}
-      };
+      var imageMapJSON = ${imageMapJSON};
 
     </script>
   </body>
 </html>
 ```
 
-Embedding the image map JSON within the HTML in this way will make it available to any JavaScript running in the browser. The following `configuration.js` file is suggested:
+Embedding the image map JSON within the HTML in this way will make it available to any JavaScript running in the browser.
+Specifically, if you want to get hold of the `imageMapJSON` variable then you can destructure the `window` object:
 
 ```
-const configuration = window.__configuration__; ///
-
-export default configuration;
+const { imageMapJSON } = window;
 ```
 
-Now you can get hold of both the image map URI and JSON thus:
-
-```
-import configuration from "./configuration";
-
-const { imageMapURI, imageMapJSON } = configuration;
-
-...
-```
-
-If you think this approach is questionable, you could add a route to provide the JSON by way of an Ajax request.
-
-Finally, the signatures of the two main functions that XGL Server provides:
+Finally, here are the signatures of the two main functions that XGL Server provides:
 
 ```
 function imageMapPNG(names, imageDirectoryPath, overlayImageSize, response) {
@@ -96,6 +80,7 @@ function imageMapJSON(names, imageDirectoryPath, overlayImageSize, callback) {
   ...
 }
 ```
+
 Note that the `imageMapPNG(...)` function pipes the image directly to a `response` object rather than returning it via a callback.
 
 For further explanation, see the preload utilities section in the XGL readme file.

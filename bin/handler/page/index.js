@@ -3,8 +3,7 @@
 const { imageMapJSON } = require("../../../index"), ///
       { headers, contentTypes, statusCodes, templateUtilities } = require("necessary");
 
-const { IMAGE_MAP_PATH } = require("../../paths"),
-      { namesFromRequest } = require("../../utilities/request"),
+const { namesFromRequest } = require("../../utilities/request"),
       { DOUBLE_SPACE,
         OVERLAY_IMAGE_SIZE,
         INDEX_PAGE_FILE_PATH,
@@ -14,7 +13,7 @@ const { IMAGE_MAP_PATH } = require("../../paths"),
 const { parseFile } = templateUtilities,
       { OK_200_STATUS_CODE } = statusCodes,
       { CONTENT_TYPE_HEADER } = headers,
-      { TEXT_HTML_CHARSET_UTF8_CONTENT_TYPE } = contentTypes;
+      { TEXT_HTML_CHARSET_UTF_8_CONTENT_TYPE } = contentTypes;
 
 function indexPageHandler(request, response) {
   const names = namesFromRequest(request),
@@ -26,17 +25,15 @@ function indexPageHandler(request, response) {
   imageMapJSON(names, imageDirectoryPath, overlayImageSize, function (imageMapJSON) {
     imageMapJSON = JSON.stringify(imageMapJSON, null, DOUBLE_SPACE);
 
-    const imageMapURI = IMAGE_MAP_PATH,
-          filePath = `${templateDirectoryPath}${indexPageFilePath}`,
+    const filePath = `${templateDirectoryPath}${indexPageFilePath}`,
           args = {
-            imageMapURI,
             imageMapJSON
           },
           html = parseFile(filePath, args),
           headers = {},
           statusCode = OK_200_STATUS_CODE;
 
-    headers[CONTENT_TYPE_HEADER] = TEXT_HTML_CHARSET_UTF8_CONTENT_TYPE;
+    headers[CONTENT_TYPE_HEADER] = TEXT_HTML_CHARSET_UTF_8_CONTENT_TYPE;
 
     response.writeHead(statusCode, headers);
 

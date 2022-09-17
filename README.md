@@ -2,6 +2,14 @@
 
 Image compositing for [XGL](https://github.com/djalbat/xgl).
 
+## Contents
+
+* [Introduction](#introduction)
+* [Installation](#installation)
+* [Acknowledgements](#acknowledgements)
+
+## Introduction
+
 [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) supports texture mapping, but a drawback is that it only allows six textures per shader. One way around this problem is to use multiple shaders, but this can become cumbersome. A better solution is to use image compositing, tiling several textures to produce what is called [texture atlas](https://en.wikipedia.org/wiki/Texture_atlas) or image map. This is what XGL Server does, as well as providing a corresponding JSON representation of the image map that can be used to configure XGL's shaders to extract specific textures.
 
 ## Installation

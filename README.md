@@ -71,10 +71,10 @@ Two routes have been set up in order to provide the aforementioned endpoints, an
 ```
 
 Embedding the image map JSON within the HTML in this way will make it available to any JavaScript running in the browser.
-Specifically, if you want to get hold of the `imageMapJSON` variable then you can destructure the `window` object:
+Specifically, if you want to get hold of the `imageMapJSON` variable then you can destructure the `globalThis` object:
 
 ```
-const { imageMapJSON } = window;
+const { imageMapJSON } = globalThis;
 ```
 
 Finally, here are the signatures of the two main functions that XGL Server provides:

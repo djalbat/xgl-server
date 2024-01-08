@@ -1,7 +1,7 @@
 {
   "name": "xgl-server",
   "author": "James Smith",
-  "version": "4.1.16",
+  "version": "4.1.17",
   "license": "MIT, Anti-996",
   "homepage": "https://github.com/djalbat/xgl-server",
   "description": "Image compositing for XGL.",
@@ -12,7 +12,7 @@
   "dependencies": {
     "express": "^4.15.4",
     "jimp": "^0.16.1",
-    "necessary": "^13.0.6"
+    "necessary": "^13.1.4"
   },
   "devDependencies": {},
   "scripts": {}

@@ -95,4 +95,4 @@ For further explanation, see the preload utilities section in the XGL readme fil
 
 ## Contact
 
-- james.smith@djalbat.com
+* james.smith@djalbat.com

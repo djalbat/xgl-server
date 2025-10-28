@@ -1,6 +1,6 @@
 "use strict";
 
-const { imageMapPNG } = require("../../index"); ///
+const { imageMapPNG } = require("../../lib/index"); ///
 
 const { namesFromRequest } = require("../utilities/request"),
       { OVERLAY_IMAGE_SIZE, IMAGE_DIRECTORY_PATH } = require("../constants");

@@ -1,6 +1,6 @@
 "use strict";
 
-const { imageMapJSON } = require("../../../index"), ///
+const { imageMapJSON } = require("../../../lib/index"), ///
       { headers, contentTypes, statusCodes, templateUtilities } = require("necessary");
 
 const { namesFromRequest } = require("../../utilities/request"),

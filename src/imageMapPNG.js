@@ -84,7 +84,6 @@ function compositeCallback(next, done, context, index) {
       });
     });
   });
-
 }
 
 function resizeOverlayImage(image, overlayImageSize, callback) {

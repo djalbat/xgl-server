@@ -1,7 +1,7 @@
 {
   "name": "xgl-server",
   "author": "James Smith",
-  "version": "4.1.46",
+  "version": "4.1.47",
   "license": "MIT, Anti-996",
   "homepage": "https://github.com/djalbat/xgl-server",
   "description": "Image compositing for XGL.",
@@ -30,5 +30,9 @@
     "watch": "npm run clean && npm run batch && npm run incremental",
     "watch-debug": "npm run clean && npm run batch-debug && npm run incremental-debug"
   },
+  "files": [
+    "src",
+    "lib"
+  ],
   "main": "./lib/index.js"
 }

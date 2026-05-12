@@ -4,8 +4,7 @@ const { imageMapJSON } = require("../../../lib/index"), ///
       { headers, contentTypes, statusCodes, templateUtilities } = require("necessary");
 
 const { namesFromRequest } = require("../../utilities/request"),
-      { DOUBLE_SPACE,
-        OVERLAY_IMAGE_SIZE,
+      { OVERLAY_IMAGE_SIZE,
         INDEX_PAGE_FILE_PATH,
         IMAGE_DIRECTORY_PATH,
         TEMPLATE_DIRECTORY_PATH } = require("../../constants");
@@ -23,7 +22,7 @@ function indexPageHandler(request, response) {
         templateDirectoryPath = TEMPLATE_DIRECTORY_PATH;
 
   imageMapJSON(names, imageDirectoryPath, overlayImageSize, function (imageMapJSON) {
-    imageMapJSON = JSON.stringify(imageMapJSON, null, DOUBLE_SPACE);
+    imageMapJSON = JSON.stringify(imageMapJSON, null, 2);
 
     const filePath = `${templateDirectoryPath}${indexPageFilePath}`,
           args = {

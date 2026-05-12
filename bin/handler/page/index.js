@@ -22,7 +22,10 @@ function indexPageHandler(request, response) {
         templateDirectoryPath = TEMPLATE_DIRECTORY_PATH;
 
   imageMapJSON(names, imageDirectoryPath, overlayImageSize, function (imageMapJSON) {
-    imageMapJSON = JSON.stringify(imageMapJSON, null, 2);
+    const json = imageMapJSON,  ///
+          jsonString = JSON.stringify(json, null, 2);
+
+    imageMapJSON = jsonString;  ///
 
     const filePath = `${templateDirectoryPath}${indexPageFilePath}`,
           args = {
